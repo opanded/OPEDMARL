@@ -67,8 +67,11 @@ This is the code base  for implementing the DARL1N algorithm presented in the pa
 
 
 - `--adv-policy`: algorithm used for the adversary policies in the environment
+- `--adv-policy`: 用于环境中对手策略的算法
 algorithm used for the 'good' (non adversary) policies in the environment.
 (default: `"maddpg"` (MADDPG and DARL1N); options: {`"att-maddpg"` (EPC), `"mean-field"` (MFAC)})
+用于环境中“好”的（非对手）策略的算法。
+（默认值："maddpg"（MADDPG和DARL1N）；选项：{"att-maddpg"（EPC），"mean-field"（MFAC）}）
 
 
 #### Core training parameters
