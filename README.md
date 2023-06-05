@@ -18,10 +18,12 @@ This is the code base  for implementing the DARL1N algorithm presented in the pa
 
 ### Training
 - There are four directories `train_adversarial`, `train_grassland`, `train_ising`, `train_simple_spread`, including runnable scripts for the four methods in each environment.
+- 这里有四个目录  `train_adversarial `,  `train_grassland `,  `train_ising `,  `train_simple_spread `，每个环境中都包含了四种方法的可运行脚本。
 
 
 ### Evaluation
 - There are four directories `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`, including runable scripts for the four methods in each environment. We provide the weights for each method in each environment with the small number of agents. You can directly run the evaluation scripts to evaluate and visualize trained agents with different methods in different environments. For Ising Model, the history of states are stored in the weight directory and needed to be plotted for visualization. Due to the file size limit of CMT system, we only provide weights for small scale settings.
+- 这里有四个目录 `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`，每个环境中都包含了四种方法的可运行脚本。我们提供了每个环境中每种方法的权重，这些权重是在少量代理的情况下训练得到的。你可以直接运行评估脚本来评估和可视化不同方法在不同环境中训练得到的代理。对于伊辛模型，状态的历史记录存储在权重目录中，需要绘制出来进行可视化。由于CMT系统的文件大小限制，我们只提供了小规模设置的权重。
 
 
 ## Training
@@ -32,10 +34,14 @@ This is the code base  for implementing the DARL1N algorithm presented in the pa
 #### Environment options
 
 - `--scenario`: defines which environment to be used (options: `ising`, `simple_spread`, `grassland`, `adversarial`)
+- `--scenario`：定义要使用的环境（选项： `ising`, `simple_spread`, `grassland`, `adversarial`）
 
 - `--good-sight`: the good agent's visibility radius. (for MADDPG, MFAC and EPC, the value is set to `100`, which means the whole environment is observable, for DARL1N, this value corresponds to the neighbor distance and is set to other values smaller than the size of the environment, such as 0.2.)
+- `--good-sight`：好的代理的可见半径。（对于MADDPG，MFAC和EPC，该值设置为 `100`，表示整个环境都是可观察的，对于DARL1N，该值对应于邻居距离，并设置为小于环境大小的其他值，例如0.2。）
+
 
 - `--adv-sight`: the adversary agent's visibility radius, similar with the good sight.
+- `--adv-sight`: 对手代理的可见半径，与好的视力类似。
 
 - `--num-agents`: number of total agents.
 
@@ -45,14 +51,20 @@ This is the code base  for implementing the DARL1N algorithm presented in the pa
 
 - `--num-food`: number of food (resources) in the scenario.
 
-- `--max-episode-len` maximum length of each episode for the environment.
+- `--max-episode-len`: maximum length of each episode for the environment.
+- `--max-episode-len`： 环境中每个剧集的最大长度。
 
 - `--ratio`: size of the environment space.
+- `--ratio`: 环境空间的大小。
 
 - `--num-episodes` total number of training iterations.
+- `--num-episodes` 训练迭代的总次数。
 
 - `--good-policy`: algorithm used for the 'good' (non adversary) policies in the environment.
 (default: `"maddpg"` (MADDPG and DARL1N); options: {`"att-maddpg"` (EPC), `"mean-field"` (MFAC)})
+- `--good-policy`: 用于环境中“好”的（非对手）策略的算法。
+（默认值："maddpg"（MADDPG和DARL1N）；选项：{"att-maddpg"（EPC），"mean-field"（MFAC）}）
+
 
 - `--adv-policy`: algorithm used for the adversary policies in the environment
 algorithm used for the 'good' (non adversary) policies in the environment.
