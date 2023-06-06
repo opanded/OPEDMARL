@@ -106,42 +106,43 @@ algorithm used for the 'good' (non adversary) policies in the environment.
 
 
 
-#### Options for EPC
+#### Options for EPC EPC方法的选项
 
-- `--n_cpu_per_agent`: cpu usage per agent (default: `1`)
+- `--n_cpu_per_agent`: cpu usage per agent (default: `1`)每个代理的cpu使用量 (默认值: 1)
 
-- `--good-share-weights`: good agents share weights of the agents encoder within the model.
+- `--good-share-weights`: good agents share weights of the agents encoder within the model.好的代理在模型中共享代理编码器的权重。
 
-- `--adv-share-weights`: adversarial agents share weights of the agents encoder within the model.
+- `--adv-share-weights`: adversarial agents share weights of the agents encoder within the model.对手代理在模型中共享代理编码器的权重。
 
-- `--n-envs`: number of environments instances in parallelization.
+- `--n-envs`: number of environments instances in parallelization.并行化中的环境实例的数量。
 
-- `--last-adv`: number of adversary agents in the last stage.
+- `--last-adv`: number of adversary agents in the last stage.最后阶段的对手代理的数量。
 
-- `--last-good`: number of good agents in the last stage.
+- `--last-good`: number of good agents in the last stage.最后阶段的好的代理的数量。
 
-- `--good-load-dir1`: directory where training state and model of first hald of good agents are loaded from.
+- `--good-load-dir1`: directory where training state and model of first hald of good agents are loaded from.从这个目录加载前半部分好的代理的训练状态和模型。
 
-- `--good-load-dir2`: directory where training state and model of second hald of good agents are loaded from.
+- `--good-load-dir2`: directory where training state and model of second hald of good agents are loaded from.从这个目录加载后半部分好的代理的训练状态和模型。
 
-- `--timeout`: seconds to wait to get data from an empty Queue in multi-processing. If the get is not successful till the expiry of timeout seconds, an exception queue.
+- `--timeout`: seconds to wait to get data from an empty Queue in multi-processing. If the get is not successful till the expiry of timeout seconds, an exception queue.在多进程中从空队列中获取数据的等待秒数。如果在超时秒数过期之前没有成功获取数据，会抛出一个异常队列。
 
-- `--restore`: restore training state and model from the specified load directories
-(For the EPC method, you may also need to allow the system to use many processes by running the command `ulimit -n 20000` (or with a larger number) )
+- `--restore`: restore training state and model from the specified load directories 从指定的加载目录恢复训练状态和模型
+(For the EPC method, you may also need to allow the system to use many processes by running the command `ulimit -n 20000` (or with a larger number) )(对于EPC方法，你可能还需要允许系统使用多个进程，通过运行命令`ulimit -n 20000`  (或者更大的数字) )
 
-#### Options for DARL1N
+#### Options for DARL1N DARL1N方法的选项
 
-- `--prosp-dist`: value to specify the potential neighbor, corresponding to \epsilon in the paper.
-- `--num-learners`: number of learners in the distributed computing system.
+- `--prosp-dist`: value to specify the potential neighbor, corresponding to \epsilon in the paper.指定潜在邻居的值，对应于论文中的\epsilon。
+
+- `--num-learners`: number of learners in the distributed computing system.分布式计算系统中的学习者数量。
 
 
 
-## Evaluation
+## Evaluation 评估
 
-### Command line options:
-Most options are same with training command line options. Here are other options.
-- `--method`: method to use including `maddpg`, `mean_field`, `darl1n` (There is a separate script for `EPC` method).
-- `--display`: displays to the screen the trained policy stored in the specified directories.
+### Command line options: 命令行选项：
+Most options are same with training command line options. Here are other options. 大多数选项和训练命令行选项相同。以下是其他选项。
+- `--method`: method to use including `maddpg`, `mean_field`, `darl1n` (There is a separate script for `EPC` method).要使用的方法，包括maddpg，mean_field，darl1n (对于EPC方法有一个单独的脚本)。
+- `--display`: displays to the screen the trained policy stored in the specified directories.将存储在指定目录中的训练好的策略显示到屏幕上。
 
 
 ## Main files and directories desriptions:
