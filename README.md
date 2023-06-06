@@ -145,26 +145,26 @@ Most options are same with training command line options. Here are other options
 - `--display`: displays to the screen the trained policy stored in the specified directories.将存储在指定目录中的训练好的策略显示到屏幕上。
 
 
-## Main files and directories desriptions:
-- `.maddpg_o/experiments/train_normal.py`: train the schedules MADDPG or MFAC algorithm.
+## Main files and directories desriptions:主要文件和目录的描述：
+- `.maddpg_o/experiments/train_normal.py`: train the schedules MADDPG or MFAC algorithm.训练预定的MADDPG或MFAC算法。
 
-- `.maddpg_o/experiments/train_epc.py`: train the scheduled EPC algorithm.
+- `.maddpg_o/experiments/train_epc.py`: train the scheduled EPC algorithm.训练预定的EPC算法。
 
-- `.maddpg_o/experiments/train_darl1n.py`: train the scheduled DARL1N algorithm.
+- `.maddpg_o/experiments/train_darl1n.py`: train the scheduled DARL1N algorithm.训练预定的DARL1N算法。
 
-- `.maddpg_o/experiments/train_epc_select.py`: perform mutation and selection procedure for EPC.
+- `.maddpg_o/experiments/train_epc_select.py`: perform mutation and selection procedure for EPC.执行EPC的变异和选择过程。
 
-- `.maddpg_o/experiments/evaluate_epc.py`: evaluation of EPC algorithm.
+- `.maddpg_o/experiments/evaluate_epc.py`: evaluation of EPC algorithm.评估EPC算法。
 
-- `.maddpg_o/experiments/evaluate_normal.py`: evaluation of MADDPG, MFAC and EPC algorithms.
+- `.maddpg_o/experiments/evaluate_normal.py`: evaluation of MADDPG, MFAC and EPC algorithms.评估MADDPG，MFAC和EPC算法。
 
-- `./maddpg_o/maddpg_local`: directory that contains helper functions for the training functions.
+- `./maddpg_o/maddpg_local`: directory that contains helper functions for the training functions.包含训练函数的辅助函数的目录。
 
-- `./mpe_local/multiagent/`: directory that contains code for different environments.
+- `./mpe_local/multiagent/`: directory that contains code for different environments.包含不同环境的代码的目录。
 
-- `./amazon_scripts`: directory that contains scripts to coordinate the distributed computing system and run DARL1N algorithm on Amazon EC2.
+- `./amazon_scripts`: directory that contains scripts to coordinate the distributed computing system and run DARL1N algorithm on Amazon EC2.包含协调分布式计算系统和在Amazon EC2上运行DARL1N算法的脚本的目录。
 
-- `./result`: directory that contains weights for each method in each environments.
+- `./result`: directory that contains weights for each method in each environments.包含每种方法在每种环境中的权重的目录。
 
 
 ## Demo
