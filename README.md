@@ -89,20 +89,21 @@ algorithm used for the 'good' (non adversary) policies in the environment.
 
 - `--max-num-train`: maximum number of training iterations.
 
-- `--seed`: set training seed for reproducibility. (For the EPC method, same seed may not lead to same result because environment processes share a common buffer and collect training data asynchronously and independently. The mini-batch sampled from the buffer with the same seed may differ due to different running speed of different processes.)
+- `--seed`: set training seed for reproducibility. (For the EPC method, same seed may not lead to same result because environment processes share a common buffer and collect training data asynchronously and independently. The mini-batch sampled from the buffer with the same seed may differ due to different running speed of different processes.)设置训练种子以实现可重复性。 (对于EPC方法，相同的种子可能不会导致相同的结果，因为环境进程共享一个公共缓冲区，并异步和独立地收集训练数据。从缓冲区中采样的小批量数据可能因为不同进程的运行速度不同而有所差异。)
 
 
 #### Checkpointing
 
-- `--save-dir`: directory where intermediate training results and model will be saved.
+- `--save-dir`: directory where intermediate training results and model will be saved.保存中间训练结果和模型的目录。
 
-- `--save-rate`: model is saved every time this number of training iterations has been completed.
+- `--save-rate`: model is saved every time this number of training iterations has been completed.每完成这个数量的训练迭代，就保存一次模型。
 
-- `--good-load-dir`: directory where training state and model of good agents are loaded from.
+- `--good-load-dir`: directory where training state and model of good agents are loaded from.从这个目录加载好的代理的训练状态和模型。
 
-- `--adv-load-dir`: directory where training state and model of adversary agents are loaded from.
+- `--adv-load-dir`: directory where training state and model of adversary agents are loaded from.从这个目录加载对手代理的训练状态和模型。
 
-- `--adv-load-one-side`: load training state and model of adversary agents from the directory specified with `--adv-load-dir`.
+- `--adv-load-one-side`: load training state and model of adversary agents from the directory specified with `--adv-load-dir`.从`--adv-load-dir`指定的目录加载对手代理的训练状态和模型。
+
 
 
 #### Options for EPC
