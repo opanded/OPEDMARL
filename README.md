@@ -202,7 +202,7 @@ def parse_args():
 - parser.add_argument("--prosp-dist", type=float, default="0.6", help="预期邻居距离")
 - parser.add_argument("--adv-sight", type=float, default="1", help="邻居距离")
 - parser.add_argument("--good-sight", type=float, default="1", help="邻居距离")
-- parser.add_argument("--ratio", type=float, default="1", help="邻居距离")
+- parser.add_argument("--ratio", type=float, default="1", help="地图大小")
 - parser.add_argument("--no-wheel", action="store_true", default=False)
 - parser.add_argument("--benchmark", action="store_true", default=False)
 - parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
