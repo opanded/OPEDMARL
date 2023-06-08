@@ -166,10 +166,10 @@ Most options are same with training command line options. Here are other options
 
 - `./result`: directory that contains weights for each method in each environments.包含每种方法在每种环境中的权重的目录。
 
-
+## train normal
 def parse_args():
 -     parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
-## Environment 环境
+# Environment 环境
 - parser.add_argument("--scenario", type=str, default="simple", help="场景脚本的名称")
 - parser.add_argument("--max-episode-len", type=int, default=25, help="最大回合长度")
 - parser.add_argument("--num-episodes", type=int, default=20000, help="回合数量")
@@ -179,7 +179,7 @@ def parse_args():
 - parser.add_argument("--good-policy", type=str, default="maddpg", help="好的代理策略")
 - parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
 - parser.add_argument("--max-num-train", type=int, default=2000, help="训练数量") # training_step
-## Core training parameters 核心训练参数
+# Core training parameters 核心训练参数
 - parser.add_argument("--lr", type=float, default=1e-2, help="Adam 优化器的学习率")
 - parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
 - parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
@@ -190,7 +190,7 @@ def parse_args():
 - parser.add_argument("--train-rate", type=int, default=20, help="每完成这么多回合就训练一次模型")
 - parser.add_argument("--adv-load-dir", type=str, default="", help="加载训练状态和模型的目录")
 - parser.add_argument("--good-load-dir", type=str, default="", help="加载训练状态和模型的目录")
-## Evaluation 评估
+# Evaluation 评估
 - parser.add_argument("--restore", action="store_true", default=False)
 - parser.add_argument("--display", action="store_true", default=False)
 - parser.add_argument("--plots-dir", type=str, default="./learning_curves/", help="保存绘图数据的目录")
@@ -210,6 +210,61 @@ def parse_args():
 - parser.add_argument("--seed", type=int, default="1", help="随机数的种子 & quot ; )
 - parser.add_argument (& quot ; --load-one-side & quot ; , action = & quot ; store_true & quot ; , default = False )
 -     return parser.parse_args()
+
+
+## evaluate epc
+def parse_args(add_extra_flags=None):
+-    parser = argparse.ArgumentParser(
+        "Reinforcement Learning experiments for multiagent environments")
+# Environment
+-    parser.add_argument("--scenario", type=str,default="grassland",help="场景脚本的名称")
+-    parser.add_argument("--map-size", type=str, default="normal",help="地图大小")
+-    parser.add_argument("--good-sight", type=float, default=100,help="好的视野")
+-    parser.add_argument("--adv-sight", type=float, default=100,help="对手的视野")
+-    parser.add_argument("--no-wheel", action="store_true", default=False,help="不使用wheel")
+-    parser.add_argument("--alpha", type=float, default=0.0,help="α参数")
+-    parser.add_argument("--show-attention", action="store_true", default=False,help="显示注意力")
+-    parser.add_argument("--max-episode-len", type=int,default=25, help="最大回合长度")
+-    parser.add_argument("--num-episodes", type=int,default=200000, help="回合数")
+-    parser.add_argument("--num-adversaries", type=int,default=2, help="对手数量")
+-    parser.add_argument("--num-good", type=int,default=2, help="好的数量")
+-    parser.add_argument("--num-agents", type=int,default=2, help="智能体数量")
+-    parser.add_argument("--num-food", type=int,default=4, help="食物数量")
+-    parser.add_argument("--good-policy", type=str,default="maddpg", help="好智能体的策略")
+-    parser.add_argument("--adv-policy", type=str,default="maddpg", help="对手的策略")
+-    parser.add_argument("--good-load-one-side", action="store_true", default=False,help="只加载一方的模型")
+-    parser.add_argument("--adv-load-one-side", action="store_true", default=False,help="只加载一方的模型")
+# Core training parameters 核心训练参数
+-    parser.add_argument("--lr", type=float, default=1e-2,help="Adam 优化器的学习率")
+-    parser.add_argument("--gamma", type=float,default=0.95, help="折扣因子")
+-    parser.add_argument("--batch-size", type=int, default=1024,help="同时优化的回合数量")
+-    parser.add_argument("--num-units", type=int, default=32,help="mlp 中的单元数量")
+-    parser.add_argument("--good-num-units", type=int, help="好的单元数量")
+-    parser.add_argument("--adv-num-units", type=int, help="对手的单元数量")
+-    parser.add_argument("--n-cpu-per-agent", type=int, default=1, help="每个代理的 CPU 数量")
+-    parser.add_argument("--good-share-weights", action="store_true", default=False, help="是否共享权重")
+-    parser.add_argument("--adv-share-weights", action="store_true", default=False, help="是否共享权重")
+-    parser.add_argument("--use-gpu", action="store_true", default=False, help="是否使用 GPU")
+# Checkpointing
+    parser.add_argument("--good-save-dir", type=str, default="./test/",help="directory in which training state and model should be saved")
+    parser.add_argument("--adv-save-dir", type=str, default="./test/",help="directory in which training state and model should be saved")
+    parser.add_argument("--train-rate", type=int, default=100,help="save model once every time this many episodes are completed")
+    parser.add_argument("--save-rate", type=int, default=1000,help="save model once every time this many episodes are completed")
+    parser.add_argument("--checkpoint-rate", type=int, default=0)
+    parser.add_argument("--load-dir", type=str, default="./test/",help="directory in which training state and model are loaded")
+# Evaluation
+    parser.add_argument("--restore", action="store_true", default=False)
+    parser.add_argument("--display", action="store_true", default=False)
+    parser.add_argument("--save-gif-data", action="store_true", default=False)
+    parser.add_argument("--render-gif", action="store_true", default=False)
+    parser.add_argument("--benchmark", action="store_true", default=False) 
+    parser.add_argument("--benchmark-iters", type=int, default=10000,help="number of iterations run for benchmarking")
+
+    parser.add_argument("--n-envs", type=int, default=4)
+    parser.add_argument("--ratio", type=float, default=1)
+    parser.add_argument("--save-summary", action="store_true", default=False)
+    parser.add_argument("--timeout", type=float, default=0.02)
+    parser.add_argument("--method", type=str, default="epc")
 
 
 
