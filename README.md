@@ -168,52 +168,49 @@ Most options are same with training command line options. Here are other options
 
 
 def parse_args():
-    parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
-    # Environment
-环境
-parser.add_argument("--scenario", type=str, default="simple", help="场景脚本的名称")
-parser.add_argument("--max-episode-len", type=int, default=25, help="最大剧集长度")
-parser.add_argument("--num-episodes", type=int, default=20000, help="剧集数量")
-parser.add_argument("--train-period", type=int, default=1000, help="更新参数的频率")
-parser.add_argument("--num_train", type=int, default=2000, help="训练数量")
-parser.add_argument("--num-adversaries", type=int, default=0, help="对手数量")
-parser.add_argument("--good-policy", type=str, default="maddpg", help="好的代理策略")
-parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
-parser.add_argument("--max-num-train", type=int, default=2000, help="训练数量") # training_step
-    # Core training parameters
-核心训练参数
-parser.add_argument("--lr", type=float, default=1e-2, help="Adam 优化器的学习率")
-parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
-parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的剧集数量")
-parser.add_argument("--num-units", type=int, default=32, help="mlp 中的单元数量")
-    # Checkpointing
-检查点
-parser.add_argument("--save-dir", type=str, default="./trained_policy/", help="保存训练状态和模型的目录")
-parser.add_argument("--save-rate", type=int, default=20, help="每完成这个数量的训练就保存一次模型")
-parser.add_argument("--train-rate", type=int, default=20, help="每完成这么多剧集就训练一次模型")
-parser.add_argument("--adv-load-dir", type=str, default="", help="加载训练状态和模型的目录")
-parser.add_argument("--good-load-dir", type=str, default="", help="加载训练状态和模型的目录")
-    # Evaluation
-评估
-parser.add_argument("--restore", action="store_true", default=False)
-parser.add_argument("--display", action="store_true", default=False)
-parser.add_argument("--plots-dir", type=str, default="./learning_curves/", help="保存绘图数据的目录")
-parser.add_argument("--num-good", type=int, default="0", help="好的数量")
-parser.add_argument("--num-landmarks", type=int, default="0", help="地标数量")
-parser.add_argument("--num-agents", type=int, default="0", help="代理数量")
-parser.add_argument("--num-food", type=int, default="0", help="食物数量")
-parser.add_argument("--num-forests", type=int, default="0", help="森林数量")
-parser.add_argument("--prosp-dist", type=float, default="0.6", help="预期邻居距离")
-parser.add_argument("--adv-sight", type=float, default="1", help="邻居距离")
-parser.add_argument("--good-sight", type=float, default="1", help="邻居距离")
-parser.add_argument("--ratio", type=float, default="1", help="邻居距离")
-parser.add_argument("--no-wheel", action="store_true", default=False)
-parser.add_argument("--benchmark", action="store_true", default=False)
-parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
-parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
-parser.add_argument("--seed", type=int, default="1", help="随机数的种子 & quot ; )
-parser.add_argument (& quot ; --load-one-side & quot ; , action = & quot ; store_true & quot ; , default = False )
-    return parser.parse_args()
+-     parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
+## Environment 环境
+- parser.add_argument("--scenario", type=str, default="simple", help="场景脚本的名称")
+- parser.add_argument("--max-episode-len", type=int, default=25, help="最大回合长度")
+- parser.add_argument("--num-episodes", type=int, default=20000, help="回合数量")
+- parser.add_argument("--train-period", type=int, default=1000, help="更新参数的频率")
+- parser.add_argument("--num_train", type=int, default=2000, help="训练数量")
+- parser.add_argument("--num-adversaries", type=int, default=0, help="对手数量")
+- parser.add_argument("--good-policy", type=str, default="maddpg", help="好的代理策略")
+- parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
+- parser.add_argument("--max-num-train", type=int, default=2000, help="训练数量") # training_step
+## Core training parameters 核心训练参数
+- parser.add_argument("--lr", type=float, default=1e-2, help="Adam 优化器的学习率")
+- parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
+- parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
+- parser.add_argument("--num-units", type=int, default=32, help="mlp 中的单元数量")
+## Checkpointing 检查点
+- parser.add_argument("--save-dir", type=str, default="./trained_policy/", help="保存训练状态和模型的目录")
+- parser.add_argument("--save-rate", type=int, default=20, help="每完成这个数量的训练就保存一次模型")
+- parser.add_argument("--train-rate", type=int, default=20, help="每完成这么多回合就训练一次模型")
+- parser.add_argument("--adv-load-dir", type=str, default="", help="加载训练状态和模型的目录")
+- parser.add_argument("--good-load-dir", type=str, default="", help="加载训练状态和模型的目录")
+## Evaluation 评估
+- parser.add_argument("--restore", action="store_true", default=False)
+- parser.add_argument("--display", action="store_true", default=False)
+- parser.add_argument("--plots-dir", type=str, default="./learning_curves/", help="保存绘图数据的目录")
+- parser.add_argument("--num-good", type=int, default="0", help="好的数量")
+- parser.add_argument("--num-landmarks", type=int, default="0", help="地标数量")
+- parser.add_argument("--num-agents", type=int, default="0", help="代理数量")
+- parser.add_argument("--num-food", type=int, default="0", help="食物数量")
+- parser.add_argument("--num-forests", type=int, default="0", help="森林数量")
+- parser.add_argument("--prosp-dist", type=float, default="0.6", help="预期邻居距离")
+- parser.add_argument("--adv-sight", type=float, default="1", help="邻居距离")
+- parser.add_argument("--good-sight", type=float, default="1", help="邻居距离")
+- parser.add_argument("--ratio", type=float, default="1", help="邻居距离")
+- parser.add_argument("--no-wheel", action="store_true", default=False)
+- parser.add_argument("--benchmark", action="store_true", default=False)
+- parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
+- parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
+- parser.add_argument("--seed", type=int, default="1", help="随机数的种子 & quot ; )
+- parser.add_argument (& quot ; --load-one-side & quot ; , action = & quot ; store_true & quot ; , default = False )
+-     return parser.parse_args()
+
 
 
 ## Demo
