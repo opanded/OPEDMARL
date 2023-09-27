@@ -9,6 +9,8 @@ This is the code base  for implementing the DARL1N algorithm presented in the pa
 - Known dependancies: python3 (3.6.9): numpy (1.19.2), gym (0.17.2), tensorflow (1.8.0), mpi4py (3.0.3), scipy (1.4.1), imageio (2.9.0), mpi4py (3.0.3); mpirun (Open MPI) (2.1.1), Ubuntu 18.04.4 LTS, ksh (sh (AT&T Research) 93u+ 2012-08-01).
 - 已知的依赖项：python3 (3.6.9)：numpy (1.19.2)，gym (0.17.2)，tensorflow (1.8.0)，mpi4py (3.0.3)，scipy (1.4.1)，imageio (2.9.0)，mpi4py (3.0.3)；mpirun (Open MPI) (2.1.1)，Ubuntu 18.04.4 LTS，ksh (sh (AT&T Research) 93u+ 2012-08-01)。
 
+- 修正：python3(3.7.13):numpy==1.21.5 gym==0.13.0 tensorflow==1.13.1 mpi4py==3.1.4 scipy==1.7.3 ; mpirun (Open MPI)==2.1.1 
+
 - The DARL1N method is developed to run in a distributed computing system consisting of multiple computation nodes. In our paper, we use Amazon EC2 to build the computing system. Instructions of running our code on the Amazon EC2 is included in the directory `amazon_scripts`. You can also run our method in a single computation node, which will become multiprocessing instead of distributed computing.
 - DARL1N方法是为了在由多个计算节点组成的分布式计算系统中运行而开发的。在我们的论文中，我们使用Amazon EC2来构建计算系统。在目录 `amazon_scripts`中包含了在Amazon EC2上运行我们的代码的指令。你也可以在一个单一的计算节点上运行我们的方法，这样就会变成多进程而不是分布式计算。
 
