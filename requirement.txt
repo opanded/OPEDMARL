@@ -1,5 +1,5 @@
 tensorflow==1.13.1
-numpy==1.16.4 
+numpy
 gym==0.13.0 
 mpi4py==3.1.4
 protobuf==3.19.4 
