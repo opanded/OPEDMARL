@@ -1,15 +1,16 @@
 
 # Distributed multi-Agent Reinforcement Learning with One-hop Neighbors (DARL1N)
 
-This is the code base  for implementing the DARL1N algorithm presented in the paper: [Distributed multi-Agent Reinforcement Learning with One-hop Neighbors](https://arxiv.org/abs/2202.09019) (DARL1N). This repository includes implementaions of four algorithms including DARL1N, [Evoluationary Population Curriculum](https://openreview.net/forum?id=SJxbHkrKDH) (EPC), [Multi-Agent Deep Deterministic Policy Gradient](https://arxiv.org/pdf/1706.02275.pdf) (MADDPG) , and [Mean Field Actor Critic](https://arxiv.org/abs/1802.05438) (MFAC). The original implementaions of EPC, MFAC are contained in this [repository](https://github.com/qian18long/epciclr2020), and MADDPG is in this [repository](https://github.com/openai/maddpg).
-这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式多代理强化学习与一跳邻居</a>（DARL1N）。这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">多代理深度确定性策略梯度</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场演员评论家</a>（MFAC）。EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
+- This is the code base  for implementing the DARL1N algorithm presented in the paper: [Distributed multi-Agent Reinforcement Learning with One-hop Neighbors](https://arxiv.org/abs/2202.09019) (DARL1N). This repository includes implementaions of four algorithms including DARL1N, [Evoluationary Population Curriculum](https://openreview.net/forum?id=SJxbHkrKDH) (EPC), [Multi-Agent Deep Deterministic Policy Gradient](https://arxiv.org/pdf/1706.02275.pdf) (MADDPG) , and [Mean Field Actor Critic](https://arxiv.org/abs/1802.05438) (MFAC). The original implementaions of EPC, MFAC are contained in this [repository](https://github.com/qian18long/epciclr2020), and MADDPG is in this [repository](https://github.com/openai/maddpg).
+
+- 这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式多代理强化学习与一跳邻居</a>（DARL1N）。这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">多代理深度确定性策略梯度</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场演员评论家</a>（MFAC）。EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
 
 ## Dependancies:
 
 - Known dependancies: python3 (3.6.9): numpy (1.19.2), gym (0.17.2), tensorflow (1.8.0), mpi4py (3.0.3), scipy (1.4.1), imageio (2.9.0), mpi4py (3.0.3); mpirun (Open MPI) (2.1.1), Ubuntu 18.04.4 LTS, ksh (sh (AT&T Research) 93u+ 2012-08-01).
 - 已知的依赖项：python3 (3.6.9)：numpy (1.19.2)，gym (0.17.2)，tensorflow (1.8.0)，mpi4py (3.0.3)，scipy (1.4.1)，imageio (2.9.0)，mpi4py (3.0.3)；mpirun (Open MPI) (2.1.1)，Ubuntu 18.04.4 LTS，ksh (sh (AT&T Research) 93u+ 2012-08-01)。
 
-- 修正：python3(3.7.13):numpy==1.21.5 gym==0.13.0 tensorflow==1.13.1 mpi4py==3.1.4 scipy==1.7.3 ; mpirun (Open MPI)==2.1.1 
+
 
 - The DARL1N method is developed to run in a distributed computing system consisting of multiple computation nodes. In our paper, we use Amazon EC2 to build the computing system. Instructions of running our code on the Amazon EC2 is included in the directory `amazon_scripts`. You can also run our method in a single computation node, which will become multiprocessing instead of distributed computing.
 - DARL1N方法是为了在由多个计算节点组成的分布式计算系统中运行而开发的。在我们的论文中，我们使用Amazon EC2来构建计算系统。在目录 `amazon_scripts`中包含了在Amazon EC2上运行我们的代码的指令。你也可以在一个单一的计算节点上运行我们的方法，这样就会变成多进程而不是分布式计算。
