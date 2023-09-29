@@ -98,34 +98,34 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --restore \
 
 # 48 agents
-python3 -m maddpg_o.experiments.train_epc \
-    --scenario=grassland \
-    --good-sight=100.0 \
-    --adv-sight=100.0 \
-    --num-episodes=1000\
-    --num-good=24\
-    --num-agents=48\
-    --last-adv=12\
-    --last-good=12\
-    --num-food=24\
-    --num-adversaries=24\
-    --max-num-train=200\
-    --ratio=3\
-    --num-units=64 \
-    --good-policy=att-maddpg \
-    --adv-policy=att-maddpg \
-    --good-share-weights \
-    --adv-share-weights \
-    --good-load-dir1="../result/grassland/epc/24agents/24agents_1" \
-    --good-load-dir2="../result/grassland/epc/24agents/24agents_1" \
-    --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1" \
-    --save-dir="../result/grassland/epc/48agents/48agents_1" \
-    --save-rate=30 \
-    --train-rate=100 \
-    --n-cpu-per-agent=5 \
-    --n-envs=25 \
-    --max-episode-len=40 \
-    --timeout=0.3 \
-    --seed=16 \
-    --adv-load-one-side \
-    --restore \
+# python3 -m maddpg_o.experiments.train_epc \
+#     --scenario=grassland \
+#     --good-sight=100.0 \
+#     --adv-sight=100.0 \
+#     --num-episodes=1000\
+#     --num-good=24\
+#     --num-agents=48\
+#     --last-adv=12\
+#     --last-good=12\
+#     --num-food=24\
+#     --num-adversaries=24\
+#     --max-num-train=200\
+#     --ratio=3\
+#     --num-units=64 \
+#     --good-policy=att-maddpg \
+#     --adv-policy=att-maddpg \
+#     --good-share-weights \
+#     --adv-share-weights \
+#     --good-load-dir1="../result/grassland/epc/24agents/24agents_1" \
+#     --good-load-dir2="../result/grassland/epc/24agents/24agents_1" \
+#     --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1" \
+#     --save-dir="../result/grassland/epc/48agents/48agents_1" \
+#     --save-rate=30 \
+#     --train-rate=100 \
+#     --n-cpu-per-agent=5 \
+#     --n-envs=25 \
+#     --max-episode-len=40 \
+#     --timeout=0.3 \
+#     --seed=16 \
+#     --adv-load-one-side \
+#     --restore \

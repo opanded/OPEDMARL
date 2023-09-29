@@ -67,22 +67,22 @@ python3 -m maddpg_o.experiments.train_normal \
 
 
 # 48 agents
-python3 -m maddpg_o.experiments.train_normal \
-    --scenario=grassland \
-    --good-sight=100.0 \
-    --adv-sight=100.0 \
-    --num-adversaries=24 \
-    --num-food=24 \
-    --num-agents=48\
-    --good-policy=mean_field \
-    --adv-policy=maddpg\
-    --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1/"\
-    --save-dir="../result/grassland/mean_field/48agents/48agents_1/" \
-    --save-rate=30 \
-    --max-num-train=100\
-    --good-max-num-neighbors=48 \
-    --adv-max-num-neighbors=48 \
-    --max-episode-len=40 \
-    --ratio=3 \
-    --seed=16 \
-    --load-one-side \
+# python3 -m maddpg_o.experiments.train_normal \
+#     --scenario=grassland \
+#     --good-sight=100.0 \
+#     --adv-sight=100.0 \
+#     --num-adversaries=24 \
+#     --num-food=24 \
+#     --num-agents=48\
+#     --good-policy=mean_field \
+#     --adv-policy=maddpg\
+#     --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1/"\
+#     --save-dir="../result/grassland/mean_field/48agents/48agents_1/" \
+#     --save-rate=30 \
+#     --max-num-train=100\
+#     --good-max-num-neighbors=48 \
+#     --adv-max-num-neighbors=48 \
+#     --max-episode-len=40 \
+#     --ratio=3 \
+#     --seed=16 \
+#     --load-one-side \
