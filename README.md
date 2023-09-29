@@ -22,7 +22,7 @@
 - DARL1N方法是为了在由多个计算节点组成的分布式计算系统中运行而开发的。在我们的论文中，我们使用Amazon EC2来构建计算系统。在目录 `amazon_scripts`中包含了在Amazon EC2上运行我们的代码的指令。你也可以在一个单一的计算节点上运行我们的方法，这样就会变成多进程而不是分布式计算。
 
 - To run our code, first go to the root directory of this repository and install needed modules by `pip3 install -e .`
-- 要运行我们的代码，首先进入这个仓库的根目录，然后用`pip3 install -e .`安装所需的模块。
+- 要运行我们的代码，首先进入这个仓库的根目录，然后用`pip install -e .`安装所需的模块。
 
 
 
