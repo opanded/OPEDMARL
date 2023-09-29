@@ -36,7 +36,12 @@ COPY --from=builder /opt/python /opt/python
 RUN update-alternatives --install /usr/bin/python python /opt/python/bin/python3.7 1
 
 # 安装pip
-RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
+RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py && git clone https://github.com/opanded/OPEDMARL /OPEDMARL
 
 # 设置bash为默认的指令
 CMD ["/bin/bash"]
+
+# 设置默认工作目录
+WORKDIR /OPEDMARL
+
+RUN pip install -e . && pip install -r requirement.txt
