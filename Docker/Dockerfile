@@ -11,8 +11,7 @@ RUN apt-get update && apt-get install -y \
     libnss3-dev \
     libssl-dev \
     libreadline-dev \
-    libffi-dev \
-    mpich
+    libffi-dev 
 
 # 复制本地的Python-3.7.13.tgz文件到镜像中
 COPY Python-3.7.13.tgz /tmp/
@@ -44,4 +43,4 @@ CMD ["/bin/bash"]
 # 设置默认工作目录
 WORKDIR /OPEDMARL
 
-RUN pip install -r requirement.txt
+# RUN pip install -r requirement.txt
