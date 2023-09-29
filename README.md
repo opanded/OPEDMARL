@@ -11,7 +11,11 @@
 `Known dependancies: python3 (3.6.9): numpy (1.19.2), gym (0.17.2), tensorflow (1.8.0), mpi4py (3.0.3), scipy (1.4.1), imageio (2.9.0), mpi4py (3.0.3); mpirun (Open MPI) (2.1.1), Ubuntu 18.04.4 LTS, ksh (sh (AT&T Research) 93u+ 2012-08-01).`
 `已知的依赖项：python3 (3.6.9)：numpy (1.19.2)，gym (0.17.2)，tensorflow (1.8.0)，mpi4py (3.0.3)，scipy (1.4.1)，imageio (2.9.0)，mpi4py (3.0.3)；mpirun (Open MPI) (2.1.1)，Ubuntu 18.04.4 LTS，ksh (sh (AT&T Research) 93u+ 2012-08-01)。`
 
-
+正确的：
+-         apt install mpich # 安装mpi4py==3.1.4的基础
+        pip install tensorflow==1.13.1 # 最重要的核心
+        pip install -e . # 项目需要的特殊依赖项
+        pip install numpy==1.16.4 gym==0.13.0 mpi4py==3.1.4 protobuf==3.19.4 imageio==2.21.1 matplotlib==3.5.3 joblib==1.1.0
 
 
 - The DARL1N method is developed to run in a distributed computing system consisting of multiple computation nodes. In our paper, we use Amazon EC2 to build the computing system. Instructions of running our code on the Amazon EC2 is included in the directory `amazon_scripts`. You can also run our method in a single computation node, which will become multiprocessing instead of distributed computing.
