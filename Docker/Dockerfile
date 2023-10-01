@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 克隆OPEDMARL项目
 RUN git clone https://github.com/opanded/OPEDMARL /OPEDMARL
 
-# 安装OPEDMARL项目所需的依赖包
-RUN pip install -r /OPEDMARL/requirements.txt
-
 # 第二阶段：创建最终的镜像
 FROM python:3.7.13-slim-buster
 
@@ -27,3 +24,5 @@ CMD ["/bin/bash"]
 
 # 设置默认工作目录
 WORKDIR /OPEDMARL
+
+RUN bash setup.sh
