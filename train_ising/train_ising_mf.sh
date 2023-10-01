@@ -12,7 +12,7 @@ python3 -m maddpg_o.experiments.train_normal \
     --adv-policy=mean_field \
     --save-dir="../result/ising/mean_field/9agents/9agents_1" \
     --save-rate=10 \
-    --max-num-train=250\
+    --max-num-train=3000\
     --good-max-num-neighbors=9 \
     --adv-max-num-neighbors=9 \
     --seed=16

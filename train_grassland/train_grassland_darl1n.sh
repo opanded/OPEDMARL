@@ -19,7 +19,7 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
     --eva-max-episode-len=25 \
     --good-max-num-neighbors=6 \
     --adv-max-num-neighbors=6 \
-    --max-num-train=2000\
+    --max-num-train=3000\
     --eva-max-episode-len=25 \
     --max-episode-len=25 \
     --ratio=1.5 \

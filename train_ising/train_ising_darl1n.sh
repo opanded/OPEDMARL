@@ -18,7 +18,7 @@ mpirun -n 10 python3  -m maddpg_o.experiments.train_darl1n \
     --save-dir="../result/ising/darl1n/9agents/9agents_1/" \
     --save-rate=10 \
     --prosp-dist=0.3 \
-    --max-num-train=150 \
+    --max-num-train=3000 \
     --good-max-num-neighbors=5 \
     --adv-max-num-neighbors=5 \
     --eva-max-episode-len=25 \

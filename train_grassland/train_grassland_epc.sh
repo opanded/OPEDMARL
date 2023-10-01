@@ -12,7 +12,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --num-food=3\
     --num-agents=6 \
     --num-adversaries=3 \
-    --max-num-train=1000 \
+    --max-num-train=3000 \
     --ratio=1.5 \
     --num-units=64 \
     --good-policy=att-maddpg \
