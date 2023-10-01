@@ -43,4 +43,4 @@ CMD ["/bin/bash"]
 # 设置默认工作目录
 WORKDIR /OPEDMARL
 
-# RUN pip install -r requirement.txt
+RUN bash setup.sh
