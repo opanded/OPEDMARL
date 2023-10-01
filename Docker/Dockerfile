@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     sudo \
     wget \
-    mpich \
     && rm -rf /var/lib/apt/lists/*
 
 # 克隆OPEDMARL项目
