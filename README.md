@@ -292,10 +292,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/9%20agents/maddpg.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/9%20agents/mf.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/9%20agents/epc.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/9%20agents/darl1n.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/9%20agents/maddpg.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/9%20agents/mf.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/9%20agents/epc.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/9%20agents/darl1n.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -308,10 +308,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/16%20agents/maddpg.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/16%20agents/mf.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/16%20agents/epc16_ising_model.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/16%20agents/darl1n.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/16%20agents/maddpg.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/16%20agents/mf.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/16%20agents/epc16_ising_model.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/16%20agents/darl1n.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -325,10 +325,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/25%20agents/maddpg.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/25%20agents/mf25.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/25%20agents/epc25_ising_model.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/25%20agents/darl1n.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/25%20agents/maddpg.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/25%20agents/mf25.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/25%20agents/epc25_ising_model.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/25%20agents/darl1n.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -342,10 +342,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/64%20agents/maddpg.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/64%20agents/mean_field_local64_ising_model.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/64%20agents/epc64_ising_model.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/ising/64%20agents/darl1n64_ising_model.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/64%20agents/maddpg.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/64%20agents/mean_field_local64_ising_model.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/64%20agents/epc64_ising_model.gif" width="270" height="200" /></td>
+    <td><img src="./demos/ising/64%20agents/darl1n64_ising_model.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -358,10 +358,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/maddpg/3%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/mf/3%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/epc/3%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/darl1n/3%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/maddpg/3%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/mf/3%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/epc/3%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/darl1n/3%20agents/208.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -375,10 +375,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/maddpg/6%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/mf/6%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/epc/6%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/darl1n/6%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/maddpg/6%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/mf/6%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/epc/6%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/darl1n/6%20agents/208.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -391,10 +391,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/maddpg/12%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/mf/12%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/epc/12%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/darl1n/12%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/maddpg/12%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/mf/12%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/epc/12%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/darl1n/12%20agents/208.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -407,10 +407,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/maddpg/24%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/mf/24%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/epc/24%20agents/208.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/simple_spread/darl1n/24%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/maddpg/24%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/mf/24%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/epc/24%20agents/208.gif" width="270" height="200" /></td>
+    <td><img src="./demos/simple_spread/darl1n/24%20agents/208.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -423,10 +423,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/maddpg/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/mf/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/epc/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/darl1n/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/maddpg/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/mf/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/epc/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/darl1n/6%20agents/26.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -440,10 +440,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/maddpg/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/mf/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/epc/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/darl1n/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/maddpg/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/mf/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/epc/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/darl1n/12%20agents/31.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -456,10 +456,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/maddpg/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/mf/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/epc/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/darl1n/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/maddpg/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/mf/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/epc/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/darl1n/24%20agents/36.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -472,10 +472,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/maddpg/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/mf/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/epc/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/grassland/darl1n/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/maddpg/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/mf/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/epc/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/grassland/darl1n/48%20agents/41.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -488,10 +488,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/maddpg/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/mf/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/epc/6%20agents/26.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/darl1n/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/maddpg/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/mf/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/epc/6%20agents/26.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/darl1n/6%20agents/26.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -505,10 +505,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/maddpg/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/mf/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/epc/12%20agents/31.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/darl1n/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/maddpg/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/mf/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/epc/12%20agents/31.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/darl1n/12%20agents/31.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -521,10 +521,10 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/maddpg/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/mf/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/epc/24%20agents/36.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/darl1n/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/maddpg/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/mf/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/epc/24%20agents/36.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/darl1n/24%20agents/36.gif" width="270" height="200" /></td>
   </tr>
  </table>
  
@@ -537,9 +537,9 @@ def parse_args(add_extra_flags=None):
     <td>DARL1N</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/maddpg/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/mf/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/epc/48%20agents/41.gif" width="270" height="200" /></td>
-    <td><img src="https://github.com/BaoqianWang/IROS22_DARL1N/blob/master/demos/adversarial/darl1n/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/maddpg/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/mf/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/epc/48%20agents/41.gif" width="270" height="200" /></td>
+    <td><img src="./demos/adversarial/darl1n/48%20agents/41.gif" width="270" height="200" /></td>
   </tr>
  </table>
