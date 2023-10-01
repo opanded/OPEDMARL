@@ -24,5 +24,3 @@ CMD ["/bin/bash"]
 
 # 设置默认工作目录
 WORKDIR /OPEDMARL
-
-RUN /bin/bash /OPEDMARL/setup.sh
