@@ -1,13 +1,13 @@
 
-# Tutorials of Using MPI on Amazon EC2
+# 使用Amazon EC2上的MPI的教程
 
-This is the tutorial of building a distributed computing system based on MPI and Amazon EC2.
+这是一个基于MPI和Amazon EC2构建分布式计算系统的教程。
 
-## Instructions on configurations of Amazon EC2 computing instance
-Here are instructions to install MPI and mpi4py packages and configure the ssh service to enable communications between instances. You can also directly use public AMI image on Amazon EC2, which is ready to use.
+## Amazon EC2计算实例的配置说明 
+这里有一些安装MPI和mpi4py包以及配置ssh服务以实现实例之间通信的说明。您也可以直接使用Amazon EC2上的公共AMI镜像，它已经准备好使用了。
 
-### An ready-to-use public Amazon EC2 AMI
-Make sure to select area US East (Ohio) us-east-2. This AMI is anonymous and committed as it is.
+### 一个可直接使用的公共Amazon EC2 AMI 
+请确保选择区域US East (Ohio) us-east-2。这个AMI是匿名的，可以直接使用。
 
 ```
 AMI ID:  ami-05a7b2deb8470f517
@@ -15,7 +15,7 @@ AMI ID:  ami-05a7b2deb8470f517
 owner:  753214619702
 ```
 
-### Steps to configure an Amazon EC2 instance
+### 配置Amazon EC2实例的步骤
 
 - Install MPI
 ```
@@ -27,8 +27,8 @@ sudo apt install openmpi-bin openmpi-dev openmpi-common openmpi-doc libopenmpi-d
 pip3 install mpi4py
 ```
 
-- Configure ssh to enable passwordless login between instances
-Please see this link as a reference : https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/
+- 配置ssh以实现实例之间无密码登录
+请参考这个链接作为参考：https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/
 
 - Configure ssh to enable login without manually entering 'yes': Please see this link as a reference: https://unix.stackexchange.com/questions/33271/how-to-avoid-ssh-asking-permission
 
