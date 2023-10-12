@@ -13,7 +13,6 @@
          pip install -e . # 项目需要的特殊依赖项
          pip install numpy==1.16.4 gym==0.13.0 mpi4py==3.1.4 protobuf==3.19.4 imageio==2.21.1 matplotlib==3.5.3 joblib==1.1.0
 
-
 DARL1N方法是为了在由多个计算节点组成的分布式计算系统中运行而开发的。在我们的论文中，我们使用Amazon EC2来构建计算系统。在目录 `amazon_scripts`中包含了在Amazon EC2上运行我们的代码的指令。你也可以在一个单一的计算节点上运行我们的方法，这样就会变成多进程而不是分布式计算。
 
 ## ImageBuild
