@@ -1,7 +1,10 @@
 
 # Distributed multi-Agent Reinforcement Learning with One-hop Neighbors (DARL1N)
 
-- 这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式多智能体强化学习与一跳邻居</a>（DARL1N）。这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">多智能体深度确定性策略梯度</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场演员评论家</a>（MFAC）。EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
+- 这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式一跳邻居多智能体强化学习方法</a>（DARL1N）。
+-一种分布式多智能体强化学习方法，它可以处理大规模的多智能体问题，同时降低了策略和值函数的表示复杂度和训练时间。它的主要思想是将全局的智能体交互解耦，只考虑一跳邻居的信息交换。每个智能体只根据自己和一跳邻居的状态来优化自己的值函数和策略函数，这样可以大大减少学习的复杂度，同时保持了表达能力，因为每个智能体可以在不同数量和状态的邻居下进行训练。这种结构还使得DARL1N可以实现分布式训练，即每个计算节点只模拟一小部分智能体的状态转移，从而加速了大规模多智能体策略的训练过程。与现有的多智能体强化学习方法相比，DARL1N在保证策略质量的同时，显著地减少了训练时间，并且可以随着智能体数量的增加而扩展。
+- 这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">混合环境多智能体行为-评论算法</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场AC</a>（MFAC）。
+- EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
 
 ## Dependancies:
 
