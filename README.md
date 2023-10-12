@@ -1,29 +1,17 @@
 
 # Distributed multi-Agent Reinforcement Learning with One-hop Neighbors (DARL1N)
 
-- This is the code base  for implementing the DARL1N algorithm presented in the paper: [Distributed multi-Agent Reinforcement Learning with One-hop Neighbors](https://arxiv.org/abs/2202.09019) (DARL1N). This repository includes implementaions of four algorithms including DARL1N, [Evoluationary Population Curriculum](https://openreview.net/forum?id=SJxbHkrKDH) (EPC), [Multi-Agent Deep Deterministic Policy Gradient](https://arxiv.org/pdf/1706.02275.pdf) (MADDPG) , and [Mean Field Actor Critic](https://arxiv.org/abs/1802.05438) (MFAC). The original implementaions of EPC, MFAC are contained in this [repository](https://github.com/qian18long/epciclr2020), and MADDPG is in this [repository](https://github.com/openai/maddpg).
-
-- 这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式多代理强化学习与一跳邻居</a>（DARL1N）。这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">多代理深度确定性策略梯度</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场演员评论家</a>（MFAC）。EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
+- 这是用于实现论文中提出的DARL1N算法的代码库：<a href="https://arxiv.org/abs/2202.09019">分布式多智能体强化学习与一跳邻居</a>（DARL1N）。这个仓库包括了四种算法的实现，包括DARL1N，<a href="https://openreview.net/forum?id=SJxbHkrKDH">进化人口课程</a>（EPC），<a href="https://arxiv.org/pdf/1706.02275.pdf">多智能体深度确定性策略梯度</a>（MADDPG）和<a href="https://arxiv.org/abs/1802.05438">平均场演员评论家</a>（MFAC）。EPC，MFAC的原始实现包含在这个<a href="https://github.com/qian18long/epciclr2020">仓库</a>中，MADDPG在这个<a href="https://github.com/openai/maddpg">仓库</a>中。
 
 ## Dependancies:
 
-错误的：
-`Known dependancies: python3 (3.6.9): numpy (1.19.2), gym (0.17.2), tensorflow (1.8.0), mpi4py (3.0.3), scipy (1.4.1), imageio (2.9.0), mpi4py (3.0.3); mpirun (Open MPI) (2.1.1), Ubuntu 18.04.4 LTS, ksh (sh (AT&T Research) 93u+ 2012-08-01).`
-`已知的依赖项：python3 (3.6.9)：numpy (1.19.2)，gym (0.17.2)，tensorflow (1.8.0)，mpi4py (3.0.3)，scipy (1.4.1)，imageio (2.9.0)，mpi4py (3.0.3)；mpirun (Open MPI) (2.1.1)，Ubuntu 18.04.4 LTS，ksh (sh (AT&T Research) 93u+ 2012-08-01)。`
-
-正确的：
 -        apt install mpich # 安装mpi4py==3.1.4的基础
          pip install tensorflow==1.13.1 # 最重要的核心
          pip install -e . # 项目需要的特殊依赖项
          pip install numpy==1.16.4 gym==0.13.0 mpi4py==3.1.4 protobuf==3.19.4 imageio==2.21.1 matplotlib==3.5.3 joblib==1.1.0
 
 
-The DARL1N method is developed to run in a distributed computing system consisting of multiple computation nodes. In our paper, we use Amazon EC2 to build the computing system. Instructions of running our code on the Amazon EC2 is included in the directory `amazon_scripts`. You can also run our method in a single computation node, which will become multiprocessing instead of distributed computing.
-
 DARL1N方法是为了在由多个计算节点组成的分布式计算系统中运行而开发的。在我们的论文中，我们使用Amazon EC2来构建计算系统。在目录 `amazon_scripts`中包含了在Amazon EC2上运行我们的代码的指令。你也可以在一个单一的计算节点上运行我们的方法，这样就会变成多进程而不是分布式计算。
-
-To run our code, first go to the root directory of this repository and install needed modules by `pip3 install -e .`
-要运行我们的代码，首先进入这个仓库的根目录，然后用`pip install -e .`安装所需的模块。
 
 ## ImageBuild
 
@@ -31,7 +19,6 @@ To run our code, first go to the root directory of this repository and install n
   
 -          docker container run -it marl
 
-## Quick Start
 
 ### Training
 - There are four directories `train_adversarial`, `train_grassland`, `train_ising`, `train_simple_spread`, including runnable scripts for the four methods in each environment.
@@ -40,7 +27,7 @@ To run our code, first go to the root directory of this repository and install n
 
 ### Evaluation
 - There are four directories `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`, including runable scripts for the four methods in each environment. We provide the weights for each method in each environment with the small number of agents. You can directly run the evaluation scripts to evaluate and visualize trained agents with different methods in different environments. For Ising Model, the history of states are stored in the weight directory and needed to be plotted for visualization. Due to the file size limit of CMT system, we only provide weights for small scale settings.
-- 这里有四个目录 `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`，每个环境中都包含了四种方法的可运行脚本。我们提供了每个环境中每种方法的权重，这些权重是在少量代理的情况下训练得到的。你可以直接运行评估脚本来评估和可视化不同方法在不同环境中训练得到的代理。对于伊辛模型，状态的历史记录存储在权重目录中，需要绘制出来进行可视化。由于CMT系统的文件大小限制，我们只提供了小规模设置的权重。
+- 这里有四个目录 `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`，每个环境中都包含了四种方法的可运行脚本。我们提供了每个环境中每种方法的权重，这些权重是在少量智能体的情况下训练得到的。你可以直接运行评估脚本来评估和可视化不同方法在不同环境中训练得到的智能体。对于伊辛模型，状态的历史记录存储在权重目录中，需要绘制出来进行可视化。由于CMT系统的文件大小限制，我们只提供了小规模设置的权重。
 
 
 ## Training
@@ -50,44 +37,30 @@ To run our code, first go to the root directory of this repository and install n
 
 #### Environment options
 
-- `--scenario`: defines which environment to be used (options: `ising`, `simple_spread`, `grassland`, `adversarial`)
 - `--scenario`：定义要使用的环境（选项： `ising`, `simple_spread`, `grassland`, `adversarial`）
 
-- `--good-sight`: the good agent's visibility radius. (for MADDPG, MFAC and EPC, the value is set to `100`, which means the whole environment is observable, for DARL1N, this value corresponds to the neighbor distance and is set to other values smaller than the size of the environment, such as 0.2.)
-- `--good-sight`：好的代理的可见半径。（对于MADDPG，MFAC和EPC，该值设置为 `100`，表示整个环境都是可观察的，对于DARL1N，该值对应于邻居距离，并设置为小于环境大小的其他值，例如0.2。）
+- `--good-sight`：好的智能体的可见半径。（对于MADDPG，MFAC和EPC，该值设置为 `100`，表示整个环境都是可观察的，对于DARL1N，该值对应于邻居距离，并设置为小于环境大小的其他值，例如0.2。）
 
+- `--adv-sight`: 对手智能体的可见半径，与好的视力类似。
 
-- `--adv-sight`: the adversary agent's visibility radius, similar with the good sight.
-- `--adv-sight`: 对手代理的可见半径，与好的视力类似。
+- `--num-agents`: 智能体的总数。
 
-- `--num-agents`: number of total agents.
+- `--num-adversaries`: 对手智能体数量。
 
-- `--num-adversaries`: number of adversary agents.
+- `--num-good`:我方智能体数量。
 
-- `--num-good`:number of good agents.
+- `--num-food`: 场景中的食物(资源)数量。
 
-- `--num-food`: number of food (resources) in the scenario.
+- `--max-episode-len`： 环境中每个回合的最大长度。
 
-- `--max-episode-len`: maximum length of each episode for the environment.
-- `--max-episode-len`： 环境中每个剧集的最大长度。
-
-- `--ratio`: size of the environment space.
 - `--ratio`: 环境空间的大小。
 
-- `--num-episodes` total number of training iterations.
 - `--num-episodes` 训练迭代的总次数。
 
-- `--good-policy`: algorithm used for the 'good' (non adversary) policies in the environment.
-(default: `"maddpg"` (MADDPG and DARL1N); options: {`"att-maddpg"` (EPC), `"mean-field"` (MFAC)})
 - `--good-policy`: 用于环境中“好”的（非对手）策略的算法。
 （默认值："maddpg"（MADDPG和DARL1N）；选项：{"att-maddpg"（EPC），"mean-field"（MFAC）}）
 
-
-- `--adv-policy`: algorithm used for the adversary policies in the environment
 - `--adv-policy`: 用于环境中对手策略的算法
-algorithm used for the 'good' (non adversary) policies in the environment.
-(default: `"maddpg"` (MADDPG and DARL1N); options: {`"att-maddpg"` (EPC), `"mean-field"` (MFAC)})
-用于环境中“好”的（非对手）策略的算法。
 （默认值："maddpg"（MADDPG和DARL1N）；选项：{"att-maddpg"（EPC），"mean-field"（MFAC）}）
 
 
@@ -112,31 +85,31 @@ algorithm used for the 'good' (non adversary) policies in the environment.
 
 - `--save-rate`: model is saved every time this number of training iterations has been completed.每完成这个数量的训练迭代，就保存一次模型。
 
-- `--good-load-dir`: directory where training state and model of good agents are loaded from.从这个目录加载好的代理的训练状态和模型。
+- `--good-load-dir`: directory where training state and model of good agents are loaded from.从这个目录加载好的智能体的训练状态和模型。
 
-- `--adv-load-dir`: directory where training state and model of adversary agents are loaded from.从这个目录加载对手代理的训练状态和模型。
+- `--adv-load-dir`: directory where training state and model of adversary agents are loaded from.从这个目录加载对手智能体的训练状态和模型。
 
-- `--adv-load-one-side`: load training state and model of adversary agents from the directory specified with `--adv-load-dir`.从`--adv-load-dir`指定的目录加载对手代理的训练状态和模型。
+- `--adv-load-one-side`: load training state and model of adversary agents from the directory specified with `--adv-load-dir`.从`--adv-load-dir`指定的目录加载对手智能体的训练状态和模型。
 
 
 
 #### Options for EPC EPC方法的选项
 
-- `--n_cpu_per_agent`: cpu usage per agent (default: `1`)每个代理的cpu使用量 (默认值: 1)
+- `--n_cpu_per_agent`: cpu usage per agent (default: `1`)每个智能体的cpu使用量 (默认值: 1)
 
-- `--good-share-weights`: good agents share weights of the agents encoder within the model.好的代理在模型中共享代理编码器的权重。
+- `--good-share-weights`: good agents share weights of the agents encoder within the model.好的智能体在模型中共享智能体编码器的权重。
 
-- `--adv-share-weights`: adversarial agents share weights of the agents encoder within the model.对手代理在模型中共享代理编码器的权重。
+- `--adv-share-weights`: adversarial agents share weights of the agents encoder within the model.对手智能体在模型中共享智能体编码器的权重。
 
 - `--n-envs`: number of environments instances in parallelization.并行化中的环境实例的数量。
 
-- `--last-adv`: number of adversary agents in the last stage.最后阶段的对手代理的数量。
+- `--last-adv`: number of adversary agents in the last stage.最后阶段的对手智能体的数量。
 
-- `--last-good`: number of good agents in the last stage.最后阶段的好的代理的数量。
+- `--last-good`: number of good agents in the last stage.最后阶段的好的智能体的数量。
 
-- `--good-load-dir1`: directory where training state and model of first hald of good agents are loaded from.从这个目录加载前半部分好的代理的训练状态和模型。
+- `--good-load-dir1`: directory where training state and model of first hald of good agents are loaded from.从这个目录加载前半部分好的智能体的训练状态和模型。
 
-- `--good-load-dir2`: directory where training state and model of second hald of good agents are loaded from.从这个目录加载后半部分好的代理的训练状态和模型。
+- `--good-load-dir2`: directory where training state and model of second hald of good agents are loaded from.从这个目录加载后半部分好的智能体的训练状态和模型。
 
 - `--timeout`: seconds to wait to get data from an empty Queue in multi-processing. If the get is not successful till the expiry of timeout seconds, an exception queue.在多进程中从空队列中获取数据的等待秒数。如果在超时秒数过期之前没有成功获取数据，会抛出一个异常队列。
 
@@ -190,7 +163,7 @@ def parse_args():
 - parser.add_argument("--train-period", type=int, default=1000, help="更新参数的频率")
 - parser.add_argument("--num_train", type=int, default=2000, help="训练数量")
 - parser.add_argument("--num-adversaries", type=int, default=0, help="对手数量")
-- parser.add_argument("--good-policy", type=str, default="maddpg", help="好的代理策略")
+- parser.add_argument("--good-policy", type=str, default="maddpg", help="好的智能体策略")
 - parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
 - parser.add_argument("--max-num-train", type=int, default=2000, help="训练数量") # training_step
 # Core training parameters 核心训练参数
@@ -210,7 +183,7 @@ def parse_args():
 - parser.add_argument("--plots-dir", type=str, default="./learning_curves/", help="保存绘图数据的目录")
 - parser.add_argument("--num-good", type=int, default="0", help="好的数量")
 - parser.add_argument("--num-landmarks", type=int, default="0", help="地标数量")
-- parser.add_argument("--num-agents", type=int, default="0", help="代理数量")
+- parser.add_argument("--num-agents", type=int, default="0", help="智能体数量")
 - parser.add_argument("--num-food", type=int, default="0", help="食物数量")
 - parser.add_argument("--num-forests", type=int, default="0", help="森林数量")
 - parser.add_argument("--prosp-dist", type=float, default="0.6", help="预期邻居距离")
@@ -219,8 +192,8 @@ def parse_args():
 - parser.add_argument("--ratio", type=float, default="1", help="地图大小")
 - parser.add_argument("--no-wheel", action="store_true", default=False)
 - parser.add_argument("--benchmark", action="store_true", default=False)
-- parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
-- parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻居区域内的最大代理数量")
+- parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻居区域内的最大智能体数量")
+- parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻居区域内的最大智能体数量")
 - parser.add_argument("--seed", type=int, default="1", help="随机数的种子 & quot ; )
 - parser.add_argument (& quot ; --load-one-side & quot ; , action = & quot ; store_true & quot ; , default = False )
 -     return parser.parse_args()
@@ -255,7 +228,7 @@ def parse_args(add_extra_flags=None):
 -    parser.add_argument("--num-units", type=int, default=32,help="mlp 中的单元数量")
 -    parser.add_argument("--good-num-units", type=int, help="好的单元数量")
 -    parser.add_argument("--adv-num-units", type=int, help="对手的单元数量")
--    parser.add_argument("--n-cpu-per-agent", type=int, default=1, help="每个代理的 CPU 数量")
+-    parser.add_argument("--n-cpu-per-agent", type=int, default=1, help="每个智能体的 CPU 数量")
 -    parser.add_argument("--good-share-weights", action="store_true", default=False, help="是否共享权重")
 -    parser.add_argument("--adv-share-weights", action="store_true", default=False, help="是否共享权重")
 -    parser.add_argument("--use-gpu", action="store_true", default=False, help="是否使用 GPU")
