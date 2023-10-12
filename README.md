@@ -8,6 +8,7 @@
 
 ## Dependancies:
 
+Ubuntu18.04
 -        apt install mpich # 安装mpi4py==3.1.4的基础
          pip install tensorflow==1.13.1 # 最重要的核心
          pip install -e . # 项目需要的特殊依赖项
@@ -78,82 +79,81 @@ DARL1N方法是为了在由多个计算节点组成的分布式计算系统中�
 
 - `--max-num-train`: maximum number of training iterations.
 
-- `--seed`: set training seed for reproducibility. (For the EPC method, same seed may not lead to same result because environment processes share a common buffer and collect training data asynchronously and independently. The mini-batch sampled from the buffer with the same seed may differ due to different running speed of different processes.)设置训练种子以实现可重复性。 (对于EPC方法，相同的种子可能不会导致相同的结果，因为环境进程共享一个公共缓冲区，并异步和独立地收集训练数据。从缓冲区中采样的小批量数据可能因为不同进程的运行速度不同而有所差异。)
+- `--seed`: 设置训练种子以实现可重复性。 (对于EPC方法，相同的种子可能不会导致相同的结果，因为环境进程共享一个公共缓冲区，并异步和独立地收集训练数据。从缓冲区中采样的小批量数据可能因为不同进程的运行速度不同而有所差异。)
 
 
 #### Checkpointing
 
-- `--save-dir`: directory where intermediate training results and model will be saved.保存中间训练结果和模型的目录。
+- `--save-dir`: 保存中间训练结果和模型的目录。
 
-- `--save-rate`: model is saved every time this number of training iterations has been completed.每完成这个数量的训练迭代，就保存一次模型。
+- `--save-rate`: 每完成这个数量的训练迭代，就保存一次模型。
 
-- `--good-load-dir`: directory where training state and model of good agents are loaded from.从这个目录加载好的智能体的训练状态和模型。
+- `--good-load-dir`: 从这个目录加载好的智能体的训练状态和模型。
 
-- `--adv-load-dir`: directory where training state and model of adversary agents are loaded from.从这个目录加载对手智能体的训练状态和模型。
+- `--adv-load-dir`: 从这个目录加载对手智能体的训练状态和模型。
 
-- `--adv-load-one-side`: load training state and model of adversary agents from the directory specified with `--adv-load-dir`.从`--adv-load-dir`指定的目录加载对手智能体的训练状态和模型。
+- `--adv-load-one-side`: 从`--adv-load-dir`指定的目录加载对手智能体的训练状态和模型。
 
 
 
-#### Options for EPC EPC方法的选项
+#### EPC方法的选项
 
-- `--n_cpu_per_agent`: cpu usage per agent (default: `1`)每个智能体的cpu使用量 (默认值: 1)
+- `--n_cpu_per_agent`: 每个智能体的cpu使用量 (默认值: 1)
 
-- `--good-share-weights`: good agents share weights of the agents encoder within the model.好的智能体在模型中共享智能体编码器的权重。
+- `--good-share-weights`: 好的智能体在模型中共享智能体编码器的权重。
 
-- `--adv-share-weights`: adversarial agents share weights of the agents encoder within the model.对手智能体在模型中共享智能体编码器的权重。
+- `--adv-share-weights`: 对手智能体在模型中共享智能体编码器的权重。
 
-- `--n-envs`: number of environments instances in parallelization.并行化中的环境实例的数量。
+- `--n-envs`: 并行化中的环境实例的数量。
 
-- `--last-adv`: number of adversary agents in the last stage.最后阶段的对手智能体的数量。
+- `--last-adv`: 最后阶段的对手智能体的数量。
 
-- `--last-good`: number of good agents in the last stage.最后阶段的好的智能体的数量。
+- `--last-good`: 最后阶段的好的智能体的数量。
 
-- `--good-load-dir1`: directory where training state and model of first hald of good agents are loaded from.从这个目录加载前半部分好的智能体的训练状态和模型。
+- `--good-load-dir1`: 从这个目录加载前半部分好的智能体的训练状态和模型。
 
-- `--good-load-dir2`: directory where training state and model of second hald of good agents are loaded from.从这个目录加载后半部分好的智能体的训练状态和模型。
+- `--good-load-dir2`: 从这个目录加载后半部分好的智能体的训练状态和模型。
 
-- `--timeout`: seconds to wait to get data from an empty Queue in multi-processing. If the get is not successful till the expiry of timeout seconds, an exception queue.在多进程中从空队列中获取数据的等待秒数。如果在超时秒数过期之前没有成功获取数据，会抛出一个异常队列。
+- `--timeout`: 在多进程中从空队列中获取数据的等待秒数。如果在超时秒数过期之前没有成功获取数据，会抛出一个异常队列。
 
-- `--restore`: restore training state and model from the specified load directories 从指定的加载目录恢复训练状态和模型
-(For the EPC method, you may also need to allow the system to use many processes by running the command `ulimit -n 20000` (or with a larger number) )(对于EPC方法，你可能还需要允许系统使用多个进程，通过运行命令`ulimit -n 20000`  (或者更大的数字) )
+- `--restore`: 从指定的加载目录恢复训练状态和模型(对于EPC方法，你可能还需要允许系统使用多个进程，通过运行命令`ulimit -n 20000`  (或者更大的数字) )
 
-#### Options for DARL1N DARL1N方法的选项
+#### DARL1N方法的选项
 
-- `--prosp-dist`: value to specify the potential neighbor, corresponding to \epsilon in the paper.指定潜在邻居的值，对应于论文中的\epsilon。
+- `--prosp-dist`: 指定潜在邻居的值，对应于论文中的\epsilon。
 
-- `--num-learners`: number of learners in the distributed computing system.分布式计算系统中的学习者数量。
+- `--num-learners`: 分布式计算系统中的学习者数量。
 
 
 
 ## Evaluation 评估
 
-### Command line options: 命令行选项：
-Most options are same with training command line options. Here are other options. 大多数选项和训练命令行选项相同。以下是其他选项。
-- `--method`: method to use including `maddpg`, `mean_field`, `darl1n` (There is a separate script for `EPC` method).要使用的方法，包括maddpg，mean_field，darl1n (对于EPC方法有一个单独的脚本)。
-- `--display`: displays to the screen the trained policy stored in the specified directories.将存储在指定目录中的训练好的策略显示到屏幕上。
+### 命令行选项：
+大多数选项和训练命令行选项相同。以下是其他选项。
+- `--method`: 要使用的方法，包括maddpg，mean_field，darl1n (对于EPC方法有一个单独的脚本)。
+- `--display`: 将存储在指定目录中的训练好的策略显示到屏幕上。
 
 
-## Main files and directories desriptions:主要文件和目录的描述：
-- `.maddpg_o/experiments/train_normal.py`: train the schedules MADDPG or MFAC algorithm.训练预定的MADDPG或MFAC算法。
+## 主要文件和目录的描述：
+- `.maddpg_o/experiments/train_normal.py`: 训练预定的MADDPG或MFAC算法。
 
-- `.maddpg_o/experiments/train_epc.py`: train the scheduled EPC algorithm.训练预定的EPC算法。
+- `.maddpg_o/experiments/train_epc.py`: 训练预定的EPC算法。
 
-- `.maddpg_o/experiments/train_darl1n.py`: train the scheduled DARL1N algorithm.训练预定的DARL1N算法。
+- `.maddpg_o/experiments/train_darl1n.py`: 训练预定的DARL1N算法。
 
-- `.maddpg_o/experiments/train_epc_select.py`: perform mutation and selection procedure for EPC.执行EPC的变异和选择过程。
+- `.maddpg_o/experiments/train_epc_select.py`: 执行EPC的变异和选择过程。
 
-- `.maddpg_o/experiments/evaluate_epc.py`: evaluation of EPC algorithm.评估EPC算法。
+- `.maddpg_o/experiments/evaluate_epc.py`: 评估EPC算法。
 
-- `.maddpg_o/experiments/evaluate_normal.py`: evaluation of MADDPG, MFAC and EPC algorithms.评估MADDPG，MFAC和EPC算法。
+- `.maddpg_o/experiments/evaluate_normal.py`: 评估MADDPG，MFAC和EPC算法。
 
-- `./maddpg_o/maddpg_local`: directory that contains helper functions for the training functions.包含训练函数的辅助函数的目录。
+- `./maddpg_o/maddpg_local`: 包含训练函数的辅助函数的目录。
 
-- `./mpe_local/multiagent/`: directory that contains code for different environments.包含不同环境的代码的目录。
+- `./mpe_local/multiagent/`: 包含不同环境的代码的目录。
 
-- `./amazon_scripts`: directory that contains scripts to coordinate the distributed computing system and run DARL1N algorithm on Amazon EC2.包含协调分布式计算系统和在Amazon EC2上运行DARL1N算法的脚本的目录。
+- `./amazon_scripts`: 包含协调分布式计算系统和在Amazon EC2上运行DARL1N算法的脚本的目录。
 
-- `./result`: directory that contains weights for each method in each environments.包含每种方法在每种环境中的权重的目录。
+- `./result`: 包含每种方法在每种环境中的权重的目录。
 
 ## train normal
 def parse_args():
