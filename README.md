@@ -24,12 +24,10 @@ DARL1N方法是为了在由多个计算节点组成的分布式计算系统中�
 
 
 ### Training
-- There are four directories `train_adversarial`, `train_grassland`, `train_ising`, `train_simple_spread`, including runnable scripts for the four methods in each environment.
 - 这里有四个目录  `train_adversarial `,  `train_grassland `,  `train_ising `,  `train_simple_spread `，每个环境中都包含了四种方法的可运行脚本。
-
+-          bash train_adversarial/baseline_8n.sh
 
 ### Evaluation
-- There are four directories `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`, including runable scripts for the four methods in each environment. We provide the weights for each method in each environment with the small number of agents. You can directly run the evaluation scripts to evaluate and visualize trained agents with different methods in different environments. For Ising Model, the history of states are stored in the weight directory and needed to be plotted for visualization. Due to the file size limit of CMT system, we only provide weights for small scale settings.
 - 这里有四个目录 `evaluate_adversarial`, `evaluate_grassland`, `evaluate_ising`, `evaluate_simple_spread`，每个环境中都包含了四种方法的可运行脚本。我们提供了每个环境中每种方法的权重，这些权重是在少量智能体的情况下训练得到的。你可以直接运行评估脚本来评估和可视化不同方法在不同环境中训练得到的智能体。对于伊辛模型，状态的历史记录存储在权重目录中，需要绘制出来进行可视化。由于CMT系统的文件大小限制，我们只提供了小规模设置的权重。
 
 
