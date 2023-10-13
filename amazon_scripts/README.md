@@ -1,13 +1,13 @@
 
-# Tutorials of Using MPI on Amazon EC2
+# 使用Amazon EC2上的MPI的教程
 
-This is the tutorial of building a distributed computing system based on MPI and Amazon EC2.
+这是一个基于MPI和Amazon EC2构建分布式计算系统的教程。
 
-## Instructions on configurations of Amazon EC2 computing instance
-Here are instructions to install MPI and mpi4py packages and configure the ssh service to enable communications between instances. You can also directly use public AMI image on Amazon EC2, which is ready to use.
+## Amazon EC2计算实例的配置说明 
+这里有一些安装MPI和mpi4py包以及配置ssh服务以实现实例之间通信的说明。您也可以直接使用Amazon EC2上的公共AMI镜像，它已经准备好使用了。
 
-### An ready-to-use public Amazon EC2 AMI
-Make sure to select area US East (Ohio) us-east-2. This AMI is anonymous and committed as it is.
+### 一个可直接使用的公共Amazon EC2 AMI 
+请确保选择区域US East (Ohio) us-east-2。这个AMI是匿名的，可以直接使用。
 
 ```
 AMI ID:  ami-05a7b2deb8470f517
@@ -15,7 +15,7 @@ AMI ID:  ami-05a7b2deb8470f517
 owner:  753214619702
 ```
 
-### Steps to configure an Amazon EC2 instance
+### 配置Amazon EC2实例的步骤
 
 - Install MPI
 ```
@@ -27,46 +27,45 @@ sudo apt install openmpi-bin openmpi-dev openmpi-common openmpi-doc libopenmpi-d
 pip3 install mpi4py
 ```
 
-- Configure ssh to enable passwordless login between instances
-Please see this link as a reference : https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/
+- 配置ssh以实现实例之间无密码登录
+请参考这个链接作为参考：https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/
 
-- Configure ssh to enable login without manually entering 'yes': Please see this link as a reference: https://unix.stackexchange.com/questions/33271/how-to-avoid-ssh-asking-permission
+- 配置ssh以实现无需手动输入’yes’的登录:
+请参考这个链接作为参考：https://unix.stackexchange.com/questions/33271/how-to-avoid-ssh-asking-permission
 
-After you configured the instance, you can commit the configurations and make an AMI for later usage.
+在您配置好实例后，您可以提交配置并制作一个AMI供以后使用。
 
-### Edit security groups when you create instances
-Edit the security groups to allow all traffic for your instance, so that ssh can work.
-
-
+### 在创建实例时编辑安全组
+编辑安全组以允许您的实例的所有流量，这样ssh才能工作。
 
 
-## Shell scripts for coordinating distributed computing systems
 
-### Create instances and extract IP address information
-Create instances on the Amazon EC2 website to build a distributed computing system, which consists of a master node and multiple worker nodes. Copy the Amazon instances information into the file `amazon_instances_info`, for example:
+## 用于协调分布式计算系统的Shell脚本
+
+### 创建实例并提取IP地址信息
+在Amazon EC2网站上创建实例来构建一个分布式计算系统，它由一个主节点和多个工作节点组成。将Amazon实例信息复制到文件`amazon_instances_info`中，例如：
 ```
 –	i-0f7f74cf0420a75a3	c5n.large	52.15.165.68	2021/08/08 09:11 GMT-7
 –	i-003c00df228882bfd	c5n.large	18.218.185.168	2021/08/08 09:11 GMT-7
 –	i-062f6166ac671a077	c5n.large	52.15.88.70	2021/08/08 09:11 GMT-7
 ```
-Here are three instances in total and let the first instance to be the master node and the rest two instances are worker nodes. We need the IP address information for communications. In the example above, 52.15.165.68 is the IP address of the master node. We run the following script to get IP addresses of all nodes and store it into the file `nodeIPaddress`
+这里总共有三个实例，让第一个实例作为主节点，其余两个实例作为工作节点。我们需要IP地址信息来进行通信。在上面的例子中，52.15.165.68是主节点的IP地址。我们运行以下脚本来获取所有节点的IP地址，并将其存储到文件`nodeIPaddress`中
 ```
 ./get_ip_address.sh
 ```
-or
+或者
 ```
 awk '{ print $4 }' amazon_instances_info > nodeIPaddress
 ```
-which extracts strings of the 4th column of the file `amazon_instances_info` and store them in the file `nodeIPaddress`.
+它提取了文件`amazon_instances_info`中第四列的字符串，并将它们存储在文件`nodeIPaddress`中。
 
 
-
-### Login master node
-Run the scipt to login the master node
+### 登录主节点
+运行脚本登录主节点
 ```
 ./login_master.sh 1
 ```
-The index after the command indicates i-th node. In this case, '1' stands for the first node or master node. The content of the `login_master.sh`:
+命令后面的索引表示第i个节点。在这种情况下，'1'表示第一个节点或主节点。`login_master.sh`的内容如下：
 ```
 #!/usr/bin/ksh
 ARRAY=()
@@ -76,24 +75,24 @@ do
 done < nodeIPaddress
 ssh  -i ~/AmazonEC2/.ssh/linux_key_pari.pem ubuntu@${ARRAY[$1]}
 ```
-in which `~/AmazonEC2/.ssh/linux_key_pari.pem` is the key pair permission generated and downloaded when you create an instance on Amazon EC2. In this case, the name of my key-pair is `linux_key_pari.pem` and placed in the directory `~/AmazonEC2/.ssh/`. You need to change it correspondingly based on your cases. You may also need to install `ksh` libraries using `apt-get install ksh` to run the script.
+其中`~/AmazonEC2/.ssh/linux_key_pari.pem`是在Amazon EC2上创建实例时生成和下载的密钥对权限。在这种情况下，我的密钥对的名字是`linux_key_pari.pem`，放在目录`~/AmazonEC2/.ssh/`下。您需要根据您的情况相应地修改它。您可能还需要使用`apt-get install ksh`来安装`ksh`库来运行脚本。
 
-### Run the MPI program in the master node
-The next step is to run the MPI program in the master node. Before running the MPI program, for example, `train_darl1n.py`. You need it to put the `train_darl1n.py` in the same directory of all nodes.  (You can use the shell script `transferFile.sh` to upload files from local host to Amazon EC2, which will be explained later.). Then you can run the script
+### 在主节点上运行MPI程序
+下一步是在主节点上运行MPI程序，例如，`train_darl1n.py`。在运行MPI程序之前，您需要将`train_darl1n.py`放在所有节点的同一目录下。（您可以使用Shell脚本`transferFile.sh`从本地主机上传文件到Amazon EC2，这将在后面解释。）然后您可以运行脚本
 ```
 ./run_spread.sh
 ```
-or other similar scripts. The file `nodeIPaddress` should be in the same directory with `run_spread.sh` in the master node.
+或其他类似的脚本。文件`nodeIPaddress`应该与主节点中的`run_spread.sh`在同一目录下。
 
-### Helper scripts
+### 辅助脚本
 
-- `./transfer.sh`: transfer files from the local host to the node listed in the file `nodeIPaddress`, for example,
-`./transfer.sh /home/smile/aaai_darl1n/setup.py /home/ubuntu/aaai_darl1n/` transfers file `/home/smile/aaai_darl1n/setup.py` on the local host to the Amazon EC2 instance directory `/home/ubuntu/aaai_darl1n/`.
+- `./transfer.sh`: 从本地主机传输文件到文件`nodeIPaddress`中列出的节点，例如，
+`./transfer.sh /home/smile/aaai_darl1n/setup.py /home/ubuntu/aaai_darl1n/`将本地主机上的文件`/home/smile/aaai_darl1n/setup.py`传输到Amazon EC2实例目录`/home/ubuntu/aaai_darl1n/`中。
 
 
-- `./download_file.sh`: download files from the Amazon EC2 instance to the local host.
+- `./download_file.sh`: 从Amazon EC2实例下载文件到本地主机。
 
-- `./ExecuteCommandAllNodes.sh`: execute a command in all nodes
+- `./ExecuteCommandAllNodes.sh`: 在所有节点上执行一个命令
 ```
 i=1
 filename='nodeIPaddress'
@@ -105,4 +104,4 @@ ssh -i  ~/AmazonEC2/.ssh/linux_key_pari.pem -n ubuntu@$line 'killall python3'
 ((i=i+1))
 done < $filename
 ```
-which executes command `killall python3` in all nodes.
+它在所有节点上执行命令`killall python3`。
