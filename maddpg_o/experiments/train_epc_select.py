@@ -15,25 +15,25 @@ def show_group_statistics(rewards, category):
 
 def add_extra_flags(parser):
     parser = argparse.ArgumentParser(
-        "Reinforcement Learning experiments for multiagent environments")
-    # Environment
+        "多智能体环境的强化学习实验")
+    # 环境
     parser.add_argument("--scenario", type=str,
                         default="grassland",
-                        help="name of the scenario script")
+                        help="场景脚本的名称")
     parser.add_argument("--num-adversaries", type=int,
-                        default=2, help="number of adversaries")
+                        default=2, help="对手的数量")
     parser.add_argument("--num-good", type=int,
-                        default=2, help="number of good")
+                        default=2, help="我方的数量")
     parser.add_argument("--num-selection", type=int,
-                        default=2, help="number of selection")
+                        default=2, help="选择的数量")
     parser.add_argument("--num-agents", type=int,
-                        default=2, help="number of good")
+                        default=2, help="智能体的数量")
     parser.add_argument("--save-dir", type=str, default="./test/",
-                        help="directory in which training state and model should be saved")
+                        help="保存训练状态和模型的目录")
     parser.add_argument("--good-load-dir", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
+                        help="加载我方训练状态和模型的目录")
     parser.add_argument("--adv-load-dir", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
+                        help="加载对方训练状态和模型的目录")
     parser.add_argument('--dir-ids', type=int, nargs="+")
     return parser
 
@@ -58,7 +58,7 @@ def compete(arglist):
     for i in range(n_competitors):
         result = results[i]
         agent_rewards = result["agent_rewards"]
-        print("\n\n-- Good agents from directory {}".format(i))
+        print("\n\n-- 目录中的我方智能体 {}".format(i))
         good_score, good_var = show_group_statistics(agent_rewards[n_adv:], "rewards")
         good_scores[i][0] = good_score
 

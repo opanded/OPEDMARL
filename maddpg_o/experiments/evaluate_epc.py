@@ -193,81 +193,60 @@ def load_all_weights(load_dir, n):
 
 
 def parse_args(add_extra_flags=None):
-    parser = argparse.ArgumentParser(
-        "Reinforcement Learning experiments for multiagent environments")
-    # Environment
-    parser.add_argument("--scenario", type=str,
-                        default="grassland",
-                        help="name of the scenario script")
-    parser.add_argument("--map-size", type=str, default="normal")
-    parser.add_argument("--good-sight", type=float, default=100)
-    parser.add_argument("--adv-sight", type=float, default=100)
-    parser.add_argument("--no-wheel", action="store_true", default=False)
-    parser.add_argument("--alpha", type=float, default=0.0)
-    parser.add_argument("--show-attention", action="store_true", default=False)
-    parser.add_argument("--max-episode-len", type=int,
-                        default=25, help="maximum episode length")
-    parser.add_argument("--num-episodes", type=int,
-                        default=200000, help="number of episodes")
-    parser.add_argument("--num-adversaries", type=int,
-                        default=2, help="number of adversaries")
-    parser.add_argument("--num-good", type=int,
-                        default=2, help="number of good")
-    parser.add_argument("--num-agents", type=int,
-                        default=2, help="number of agents")
-    parser.add_argument("--num-food", type=int,
-                        default=4, help="number of food")
-    parser.add_argument("--good-policy", type=str,
-                        default="maddpg", help="policy for good agents")
-    parser.add_argument("--adv-policy", type=str,
-                        default="maddpg", help="policy of adversaries")
-    parser.add_argument("--good-load-one-side", action="store_true", default=False)
-    parser.add_argument("--adv-load-one-side", action="store_true", default=False)
-    # Core training parameters
-    parser.add_argument("--lr", type=float, default=1e-2,
-                        help="learning rate for Adam optimizer")
-    parser.add_argument("--gamma", type=float,
-                        default=0.95, help="discount factor")
-    parser.add_argument("--batch-size", type=int, default=1024,
-                        help="number of episodes to optimize at the same time")
-    parser.add_argument("--num-units", type=int, default=64,
-                        help="number of units in the mlp")
-    parser.add_argument("--good-num-units", type=int)
-    parser.add_argument("--adv-num-units", type=int)
-    parser.add_argument("--n-cpu-per-agent", type=int, default=1)
-    parser.add_argument("--good-share-weights", action="store_true", default=False)
-    parser.add_argument("--adv-share-weights", action="store_true", default=False)
-    parser.add_argument("--use-gpu", action="store_true", default=False)
-    # Checkpointing
-    parser.add_argument("--good-save-dir", type=str, default="./test/",
-                        help="directory in which training state and model should be saved")
-    parser.add_argument("--adv-save-dir", type=str, default="./test/",
-                        help="directory in which training state and model should be saved")
-    parser.add_argument("--train-rate", type=int, default=100,
-                        help="save model once every time this many episodes are completed")
-    parser.add_argument("--save-rate", type=int, default=1000,
-                        help="save model once every time this many episodes are completed")
-    parser.add_argument("--checkpoint-rate", type=int, default=0)
-    parser.add_argument("--load-dir", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
-    # Evaluation
-    parser.add_argument("--restore", action="store_true", default=False)
-    parser.add_argument("--display", action="store_true", default=False)
-    parser.add_argument("--save-gif-data", action="store_true", default=False)
-    parser.add_argument("--render-gif", action="store_true", default=False)
-    parser.add_argument("--benchmark", action="store_true", default=False)
-    parser.add_argument("--benchmark-iters", type=int, default=10000,
-                        help="number of iterations run for benchmarking")
-
-    parser.add_argument("--n-envs", type=int, default=4)
-    parser.add_argument("--ratio", type=float, default=1)
-    parser.add_argument("--save-summary", action="store_true", default=False)
-    parser.add_argument("--timeout", type=float, default=0.02)
+    parser = argparse.ArgumentParser("多智能体环境的强化学习实验")
+    # 环境
+    parser.add_argument("--scenario", type=str, default="grassland", help="场景脚本的名称")
+    parser.add_argument("--map-size", type=str, default="normal", help="地图大小")
+    parser.add_argument("--good-sight", type=float, default=100, help="我方智能体的视野范围")
+    parser.add_argument("--adv-sight", type=float, default=100, help="对方智能体的视野范围")
+    parser.add_argument("--no-wheel", action="store_true", default=False, help="禁用车轮运动")
+    parser.add_argument("--alpha", type=float, default=0.0, help="学习率")
+    parser.add_argument("--show-attention", action="store_true", default=False, help="显示注意力")
+    parser.add_argument("--max-episode-len", type=int, default=25, help="最大回合长度")
+    parser.add_argument("--num-episodes", type=int, default=200000, help="回合的数量")
+    parser.add_argument("--num-adversaries", type=int, default=2, help="对方智能体的数量")
+    parser.add_argument("--num-good", type=int, default=2, help="我方智能体的数量")
+    parser.add_argument("--num-agents", type=int, default=2, help="智能体的数量")
+    parser.add_argument("--num-food", type=int, default=4, help="食物的数量")
+    parser.add_argument("--good-policy", type=str, default="maddpg", help="我方智能体的策略")
+    parser.add_argument("--adv-policy", type=str, default="maddpg", help="对方智能体的策略")
+    parser.add_argument("--good-load-one-side", action="store_true", default=False, help="加载我方模型的一个侧面")
+    parser.add_argument("--adv-load-one-side", action="store_true", default=False, help="加载对方模型的一个侧面")
+    # 核心训练参数
+    parser.add_argument("--lr", type=float, default=1e-2, help="Adam优化器的学习率")
+    parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
+    parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
+    parser.add_argument("--num-units", type=int, default=64, help="多层感知机中的单元数量")
+    parser.add_argument("--good-num-units", type=int, help="我方智能体的多层感知机中的单元数量")
+    parser.add_argument("--adv-num-units", type=int, help="对方智能体的多层感知机中的单元数量")
+    parser.add_argument("--n-cpu-per-agent", type=int, default=1, help="每个智能体的CPU数量")
+    parser.add_argument("--good-share-weights", action="store_true", default=False, help="我方智能体共享权重")
+    parser.add_argument("--adv-share-weights", action="store_true", default=False, help="对方智能体共享权重")
+    parser.add_argument("--use-gpu", action="store_true", default=False, help="使用GPU")
+    # 检查点
+    parser.add_argument("--good-save-dir", type=str, default="./test/", help="保存我方训练状态和模型的目录")
+    parser.add_argument("--adv-save-dir", type=str, default="./test/", help="保存对方训练状态和模型的目录")
+    parser.add_argument("--train-rate", type=int, default=100, help="每完成一定数量的回合后保存模型")
+    parser.add_argument("--save-rate", type=int, default=1000, help="每完成一定数量的回合后保存模型")
+    parser.add_argument("--checkpoint-rate", type=int, default=0, help="检查点保存频率")
+    parser.add_argument("--load-dir", type=str, default="./test/", help="加载训练状态和模型的目录")
+    # 评估
+    parser.add_argument("--restore", action="store_true", default=False, help="恢复训练状态和模型")
+    parser.add_argument("--display", action="store_true", default=False, help="显示环境")
+    parser.add_argument("--save-gif-data", action="store_true", default=False, help="保存GIF数据")
+    parser.add_argument("--render-gif", action="store_true", default=False, help="渲染GIF")
+    parser.add_argument("--benchmark", action="store_true", default=False, help="基准测试")
+    parser.add_argument("--benchmark-iters", type=int, default=10000, help="基准测试迭代次数")
+    parser.add_argument("--n-envs", type=int, default=4, help="环境数量")
+    parser.add_argument("--ratio", type=float, default=1, help="比率")
+    parser.add_argument("--save-summary", action="store_true", default=False, help="保存摘要信息")
+    parser.add_argument("--timeout", type=float, default=0.02, help="超时时间")
 
     if add_extra_flags is not None:
         parser = add_extra_flags(parser)
 
     return parser.parse_args()
+
 
 
 with tf.Session() as session:
@@ -289,19 +268,19 @@ with tf.Session() as session:
 
     trainers = []
     trainers_name = []
-    print('start evaluation')
+    print('开始评估')
     for i in range(num_adversaries):
         trainers.append(get_one_side_trainer(i=i, scope = "{}".format(i), env = env, obs_shape_n = obs_shape_n))
         trainers_name.append("adv{}".format(i))
-        print('Initialize', i)
+        print('初始化', i)
 
     for i in range(num_adversaries, n):
         trainers.append(get_good_trainer(i=i, scope = "{}".format(i), env = env, obs_shape_n = obs_shape_n))
         trainers_name.append("good{}".format(i))
-        print('Initialize', i)
+        print('初始化', i)
 
     U.initialize()
-    print('Initialization done')
+    print('初始化完成')
 
     all_weights = dict()
     for i in range(num_adversaries, n):
@@ -348,7 +327,7 @@ with tf.Session() as session:
         trans += 1
         action_n = [agent.action(obs) for agent, obs in zip(trainers,obs_n)]
         action_history.append(action_n)
-        #print(action_n)
+        # print(action_n)
         # environment step
         new_obs_n, rew_n, done_n, next_info_n = env.step(action_n)
         for i, rew in enumerate(rew_n):
@@ -357,7 +336,7 @@ with tf.Session() as session:
             else:
                 good_episode_rewards[-1] += rew
 
-        #print('Next Observation', new_obs_n, 'Observation', obs_n, 'Action', action_n)
+        # print('Next Observation', new_obs_n, 'Observation', obs_n, 'Action', action_n)
         episode_step += 1
         done = all(done_n)
         terminal = (episode_step > FLAGS.max_episode_len)
@@ -371,7 +350,7 @@ with tf.Session() as session:
 
         touch_path(arglist.good_save_dir)
         if done or terminal:
-            #print(good_episode_rewards)
+            # print(good_episode_rewards)
             if arglist.scenario == 'ising':
                 action_file = arglist.good_save_dir + 'history_action%d.pkl' %trans
                 with open(action_file, 'wb') as fp:
@@ -403,6 +382,6 @@ with tf.Session() as session:
                 adv_episode_rewards.append(0)
 
         if trans >= 10*FLAGS.max_episode_len:
-            print('Good reward: ', np.mean(good_episode_rewards), 'Adv reward: ', np.mean(adv_episode_rewards))
-            print('Good reward', good_episode_rewards, 'Adv reward: ', adv_episode_rewards)
+            print('我方奖励: ', np.mean(good_episode_rewards), '对方奖励: ', np.mean(adv_episode_rewards))
+            print('我方奖励', good_episode_rewards, '对方奖励: ', adv_episode_rewards)
             break

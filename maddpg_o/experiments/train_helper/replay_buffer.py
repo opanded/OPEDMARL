@@ -3,13 +3,13 @@ import random
 
 class ReplayBuffer(object):
     def __init__(self, size):
-        """Create Prioritized Replay buffer.
+        """创建优先重放缓冲区。
 
         Parameters
         ----------
         size: int
-            Max number of transitions to store in the buffer. When the buffer
-            overflows the old memories are dropped.
+            要存储在缓冲区中的最大转换数。 
+            当缓冲区溢出时，旧的内存将被丢弃。
         """
         self._storage = []
         self._maxsize = int(size)
@@ -79,26 +79,25 @@ class ReplayBuffer(object):
         return self._encode_sample_simple(idxes)
 
     def sample(self, batch_size):
-        """Sample a batch of experiences.
+        """采样一批经验数据。
 
-        Parameters
+        参数
         ----------
         batch_size: int
-            How many transitions to sample.
+            要采样的过渡数量。
 
-        Returns
+        输出
         -------
         obs_batch: np.array
-            batch of observations
+            观察值的批次
         act_batch: np.array
-            batch of actions executed given obs_batch
+            在给定 obs_batch 的情况下执行的动作批次
         rew_batch: np.array
-            rewards received as results of executing act_batch
+            作为执行 act_batch 的结果而收到的奖励
         next_obs_batch: np.array
-            next set of observations seen after executing act_batch
+            执行 act_batch 后看到的下一组观察值
         done_mask: np.array
-            done_mask[i] = 1 if executing act_batch[i] resulted in
-            the end of an episode and 0 otherwise.
+            若执行 act_batch[i] 导致回合结束则 done_mask[i] = 1, 否则为 0。
         """
         if batch_size > 0:
             idxes = self.make_index(batch_size)
@@ -107,4 +106,4 @@ class ReplayBuffer(object):
         return self._encode_sample(idxes)
 
     def collect(self):
-        return self.sample(-1)
+        return self.sample(-1)  # 采集所有可用的经验数据

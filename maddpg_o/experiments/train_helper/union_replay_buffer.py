@@ -5,13 +5,13 @@ import joblib
 
 class UnionReplayBuffer(object):
     def __init__(self, size, n_items, n_agents):
-        """Create Prioritized Replay buffer.
+        """创建优先重放缓冲区。
 
         Parameters
         ----------
         size: int
-            Max number of transitions to store in the buffer. When the buffer
-            overflows the old memories are dropped.
+            要存储在缓冲区中的最大转换数。 
+            当缓冲区溢出时，旧的内存将被丢弃。
         """
         self._storage = [[None for _ in range(n_agents)] for _ in range(n_items)]
         self._maxsize = int(size)

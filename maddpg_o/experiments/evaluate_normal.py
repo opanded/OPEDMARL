@@ -16,43 +16,43 @@ import os
 import joblib
 
 def parse_args():
-    parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
-    # Environment
-    parser.add_argument("--scenario", type=str, default="simple", help="name of the scenario script")
-    parser.add_argument("--max-episode-len", type=int, default=25, help="maximum episode length")
-    parser.add_argument("--num-episodes", type=int, default=20000, help="number of episodes")
-    parser.add_argument("--train-period", type=int, default=1000, help="frequency of updating parameters")
-    parser.add_argument("--num_train", type=int, default=2000, help="number of train")
-    parser.add_argument("--num-adversaries", type=int, default=0, help="number of adversaries")
-    parser.add_argument("--good-policy", type=str, default="maddpg", help="policy for good agents")
-    parser.add_argument("--adv-policy", type=str, default="maddpg", help="policy of adversaries")
-    # Core training parameters
-    parser.add_argument("--lr", type=float, default=1e-2, help="learning rate for Adam optimizer")
-    parser.add_argument("--gamma", type=float, default=0.95, help="discount factor")
-    parser.add_argument("--batch-size", type=int, default=1024, help="number of episodes to optimize at the same time")
-    parser.add_argument("--num-units", type=int, default=64, help="number of units in the mlp")
-    # Checkpointing
-    parser.add_argument("--good-save-dir", type=str, default="../trained_policy/", help="directory in which training state and model should be saved")
-    parser.add_argument("--adv-save-dir", type=str, default="../trained_policy/", help="directory in which training state and model should be saved")
-    parser.add_argument("--save-rate", type=int, default=20, help="save model once every time this number of train are completed")
-    parser.add_argument("--train-rate", type=int, default=20, help="train model once every time this many episodes are completed")
-    parser.add_argument("--load-dir", type=str, default="", help="directory in which training state and model are loaded")
-    # Evaluation
+    parser = argparse.ArgumentParser("多智能体环境的强化学习实验")
+    # 环境
+    parser.add_argument("--scenario", type=str, default="simple", help="场景脚本的名称")
+    parser.add_argument("--max-episode-len", type=int, default=25, help="最大回合长度")
+    parser.add_argument("--num-episodes", type=int, default=20000, help="回合的数量")
+    parser.add_argument("--train-period", type=int, default=1000, help="更新参数的频率")
+    parser.add_argument("--num_train", type=int, default=2000, help="训练次数")
+    parser.add_argument("--num-adversaries", type=int, default=0, help="对手的数量")
+    parser.add_argument("--good-policy", type=str, default="maddpg", help="我方代理的策略")
+    parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
+    # 核心训练参数
+    parser.add_argument("--lr", type=float, default=1e-2, help="Adam优化器的学习率")
+    parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
+    parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
+    parser.add_argument("--num-units", type=int, default=64, help="多层感知机中的单元数量")
+    # 检查点
+    parser.add_argument("--good-save-dir", type=str, default="../trained_policy/", help="保存我方训练状态和模型的目录")
+    parser.add_argument("--adv-save-dir", type=str, default="../trained_policy/", help="保存对手训练状态和模型的目录")
+    parser.add_argument("--save-rate", type=int, default=20, help="每完成一定数量的训练后保存模型")
+    parser.add_argument("--train-rate", type=int, default=20, help="每完成一定数量的回合后训练模型")
+    parser.add_argument("--load-dir", type=str, default="", help="加载训练状态和模型的目录")
+    # 评估
     parser.add_argument("--restore", action="store_true", default=False)
     parser.add_argument("--display", action="store_true", default=False)
-    parser.add_argument("--plots-dir", type=str, default="../learning_curves/", help="directory where plot data is saved")
-    parser.add_argument("--num-good", type=int, default="0", help="num good")
-    parser.add_argument("--num-landmarks", type=int, default="0", help="num landmarks")
-    parser.add_argument("--num-agents", type=int, default="0", help="num agents")
-    parser.add_argument("--last-stage-num", type=int, default="0", help="num agents from last stage")
-    parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="maximum number of  agents in neighbors area")
-    parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="maximum number of  agents in neighbors area")
-    parser.add_argument("--num-food", type=int, default="0", help="num food")
-    parser.add_argument("--num-forests", type=int, default="0", help="num foresets")
-    parser.add_argument("--prosp-dist", type=float, default="0.6", help="prospective neighbor distance")
-    parser.add_argument("--adv-sight", type=float, default="1", help="neighbor distance")
-    parser.add_argument("--good-sight", type=float, default="1", help="neighbor distance")
-    parser.add_argument("--ratio", type=float, default="1", help="size map")
+    parser.add_argument("--plots-dir", type=str, default="../learning_curves/", help="保存绘图数据的目录")
+    parser.add_argument("--num-good", type=int, default="0", help="我方代理的数量")
+    parser.add_argument("--num-landmarks", type=int, default="0", help="地标的数量")
+    parser.add_argument("--num-agents", type=int, default="0", help="智能体的数量")
+    parser.add_argument("--last-stage-num", type=int, default="0", help="来自上一阶段的智能体数量")
+    parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻域中最多的我方代理数量")
+    parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻域中最多的对手数量")
+    parser.add_argument("--num-food", type=int, default="0", help="食物的数量")
+    parser.add_argument("--num-forests", type=int, default="0", help="森林的数量")
+    parser.add_argument("--prosp-dist", type=float, default="0.6", help="前景邻居距离")
+    parser.add_argument("--adv-sight", type=float, default="1", help="邻居距离")
+    parser.add_argument("--good-sight", type=float, default="1", help="邻居距离")
+    parser.add_argument("--ratio", type=float, default="1", help="地图大小")
     parser.add_argument("--no-wheel", action="store_true", default=False)
     parser.add_argument("--method", type=str, default="darl1n")
     return parser.parse_args()
@@ -64,7 +64,7 @@ def touch_path(path):
 
 
 def mlp_model(input, num_outputs, scope, reuse=False, num_units=64, rnn_cell=None):
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     with tf.variable_scope(scope, reuse=reuse):
         out = input
         out = layers.fully_connected(out, num_outputs=num_units, activation_fn=tf.nn.relu)
@@ -80,7 +80,7 @@ def make_env(scenario_name, arglist, evaluate=False): ###################
     scenario = scenario_class(n_good=arglist.num_agents - arglist.num_adversaries, n_adv=arglist.num_adversaries, n_landmarks=arglist.num_landmarks, n_food=arglist.num_food, n_forests=arglist.num_forests,
                                   no_wheel=arglist.no_wheel, good_sight=arglist.good_sight, adv_sight=arglist.adv_sight, alpha=0, ratio = arglist.ratio, max_good_neighbor = arglist.good_max_num_neighbors, max_adv_neighbor = arglist.adv_max_num_neighbors)
     world = scenario.make_world()
-    # create multiagent environment
+    # 创建多智能体环境
     env = MultiAgentEnv(world, scenario.reset_world, scenario.reward, scenario.observation)
     return env
 
@@ -200,15 +200,15 @@ if __name__== "__main__":
         np.random.seed(30)
         env = make_env(arglist.scenario, arglist, evaluate= True)
         num_agents = env.n
-        print('Evaluate computation scheme: ', 'DARL1N')
-        print('Scenario: ', arglist.scenario)
-        print('Number of agents: ', num_agents)
+        print('评估计算方案: ', 'DARL1N')
+        print('想定: ', arglist.scenario)
+        print('智能体数量: ', num_agents)
         #touch_path(arglist.save_dir)
         obs_shape_n = [env.observation_space[i].shape for i in range(env.n)]
         trainers = get_trainers(env, num_agents, None, obs_shape_n, arglist, session)
         U.initialize()
 
-        print('Loading previous state...')
+        print('加载之前的状态...')
         #U.load_state(arglist.save_dir)
         for i in range(num_agents):
             load_weights(trainers, i)
@@ -216,4 +216,4 @@ if __name__== "__main__":
         random.seed(30)
         np.random.seed(30)
         good_reward , bad_reward = evaluate_policy(env, trainers, 10*arglist.max_episode_len, display = arglist.display)
-        print('Reward is', good_reward, bad_reward)
+        print('奖励为', good_reward, bad_reward)

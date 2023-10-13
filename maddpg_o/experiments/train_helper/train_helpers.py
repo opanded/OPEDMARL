@@ -148,7 +148,7 @@ def make_env(scenario_name, arglist, benchmark=False):
     return env
 
 def make_session(graph, num_cpu):
-    # print("num_cpu:", num_cpu)
+    # print("cpu序号:", num_cpu)
     tf_config = tf.ConfigProto(
         # device_count={"CPU": num_cpu},
         inter_op_parallelism_threads=num_cpu,
@@ -251,83 +251,60 @@ def load_all_weights(load_dir1, load_dir2, n_adv, n_good, last_n_adv, last_n_goo
     CACHED_WEIGHTS = clean(CACHED_WEIGHTS)
 
 def parse_args(add_extra_flags=None):
-    parser = argparse.ArgumentParser(
-        "Reinforcement Learning experiments for multiagent environments")
-    # Environment
-    parser.add_argument("--scenario", type=str,
-                        default="grassland",
-                        help="name of the scenario script")
-    parser.add_argument("--map-size", type=str, default="normal")
-    parser.add_argument("--good-sight", type=float, default=100)
-    parser.add_argument("--adv-sight", type=float, default=100)
-    parser.add_argument("--no-wheel", action="store_true", default=False)
-    parser.add_argument("--alpha", type=float, default=0.0)
-    parser.add_argument("--show-attention", action="store_true", default=False)
-    parser.add_argument("--max-episode-len", type=int,
-                        default=25, help="maximum episode length")
-    parser.add_argument("--max-num-train", type=int,
-                        default=1000, help="maximum episode length")
-    parser.add_argument("--num-episodes", type=int,
-                        default=200000, help="number of episodes")
-    parser.add_argument("--num-adversaries", type=int,
-                        default=2, help="number of adversaries")
-    parser.add_argument("--num-good", type=int,
-                        default=2, help="number of good")
-    parser.add_argument("--num-agents", type=int,
-                        default=2, help="number of good")
-    parser.add_argument("--num-food", type=int,
-                        default=4, help="number of food")
-    parser.add_argument("--good-policy", type=str,
-                        default="maddpg", help="policy for good agents")
-    parser.add_argument("--adv-policy", type=str,
-                        default="maddpg", help="policy of adversaries")
-    # Core training parameters
-    parser.add_argument("--lr", type=float, default=1e-2,
-                        help="learning rate for Adam optimizer")
-    parser.add_argument("--gamma", type=float,
-                        default=0.95, help="discount factor")
-    parser.add_argument("--batch-size", type=int, default=1024,
-                        help="number of episodes to optimize at the same time")
-    parser.add_argument("--num-units", type=int, default=64,
-                        help="number of units in the mlp")
-    parser.add_argument("--good-num-units", type=int)
-    parser.add_argument("--adv-num-units", type=int)
-    parser.add_argument("--n-cpu-per-agent", type=int, default=1)
-    parser.add_argument("--good-share-weights", action="store_true", default=False)
-    parser.add_argument("--adv-share-weights", action="store_true", default=False)
-    parser.add_argument("--use-gpu", action="store_true", default=False)
+    parser = argparse.ArgumentParser("多智能体环境的强化学习实验")
+    # 环境
+    parser.add_argument("--scenario", type=str, default="grassland", help="场景脚本的名称")
+    parser.add_argument("--map-size", type=str, default="normal", help="地图大小")
+    parser.add_argument("--good-sight", type=float, default=100, help="我方智能体的视野范围")
+    parser.add_argument("--adv-sight", type=float, default=100, help="对方智能体的视野范围")
+    parser.add_argument("--no-wheel", action="store_true", default=False, help="禁用轮子（？）")
+    parser.add_argument("--alpha", type=float, default=0.0, help="Alpha 参数")
+    parser.add_argument("--show-attention", action="store_true", default=False, help="显示注意力信息")
+    parser.add_argument("--max-episode-len", type=int, default=25, help="最大回合长度")
+    parser.add_argument("--max-num-train", type=int, default=1000, help="最大训练次数")
+    parser.add_argument("--num-episodes", type=int, default=200000, help="回合的数量")
+    parser.add_argument("--num-adversaries", type=int, default=2, help="对手的数量")
+    parser.add_argument("--num-good", type=int, default=2, help="我方智能体的数量")
+    parser.add_argument("--num-agents", type=int, default=2, help="智能体的数量")
+    parser.add_argument("--num-food", type=int, default=4, help="食物的数量")
+    parser.add_argument("--good-policy", type=str, default="maddpg", help="我方智能体的策略")
+    parser.add_argument("--adv-policy", type=str, default="maddpg", help="对手的策略")
+    # 核心训练参数
+    parser.add_argument("--lr", type=float, default=1e-2, help="Adam 优化器的学习率")
+    parser.add_argument("--gamma", type=float, default=0.95, help="折扣因子")
+    parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
+    parser.add_argument("--num-units", type=int, default=64, help="MLP 中的单元数量")
+    parser.add_argument("--good-num-units", type=int, help="我方智能体MLP中的单元数量")
+    parser.add_argument("--adv-num-units", type=int, help="对手MLP中的单元数量")
+    parser.add_argument("--n-cpu-per-agent", type=int, default=1, help="每个智能体的 CPU 数量")
+    parser.add_argument("--good-share-weights", action="store_true", default=False, help="我方智能体是否共享权重")
+    parser.add_argument("--adv-share-weights", action="store_true", default=False, help="对手是否共享权重")
+    parser.add_argument("--use-gpu", action="store_true", default=False, help="使用 GPU 进行训练")
     # Checkpointing
-    parser.add_argument("--save-dir", type=str, default="./test/",
-                        help="directory in which training state and model should be saved")
-    parser.add_argument("--train-rate", type=int, default=100,
-                        help="save model once every time this many episodes are completed")
-    parser.add_argument("--save-rate", type=int, default=1000,
-                        help="save model once every time this many episodes are completed")
-    parser.add_argument("--checkpoint-rate", type=int, default=0)
-    parser.add_argument("--good-load-dir1", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
-    parser.add_argument("--good-load-dir2", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
-    parser.add_argument("--adv-load-dir", type=str, default="./test/",
-                        help="directory in which training state and model are loaded")
-    # Evaluation
-    parser.add_argument("--restore", action="store_true", default=False)
-    parser.add_argument("--good-load-one-side", action="store_true", default=False)
-    parser.add_argument("--adv-load-one-side", action="store_true", default=False)
-    parser.add_argument("--display", action="store_true", default=False)
-    parser.add_argument("--save-gif-data", action="store_true", default=False)
-    parser.add_argument("--render-gif", action="store_true", default=False)
-    parser.add_argument("--benchmark", action="store_true", default=False)
-    parser.add_argument("--benchmark-iters", type=int, default=10000,
-                        help="number of iterations run for benchmarking")
-    parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--ratio", type=float, default=1)
-    parser.add_argument("--n-envs", type=int, default=4)
-    parser.add_argument("--save-summary", action="store_true", default=False)
-    parser.add_argument("--timeout", type=float, default=0.02)
-    parser.add_argument("--max-num-neighbors", type=int, default="0", help="maximum number of  agents in neighbors area")
-    parser.add_argument("--last-adv", type=int, default="0", help="number of adv agents in the last stage")
-    parser.add_argument("--last-good", type=int, default="0", help="number of good agents in the last stage")
+    parser.add_argument("--save-dir", type=str, default="./test/", help="保存训练状态和模型的目录")
+    parser.add_argument("--train-rate", type=int, default=100, help="每完成一定数量的回合后保存模型")
+    parser.add_argument("--save-rate", type=int, default=1000, help="每完成一定数量的回合后保存模型")
+    parser.add_argument("--checkpoint-rate", type=int, default=0, help="检查点频率")
+    parser.add_argument("--good-load-dir1", type=str, default="./test/", help="加载我方智能体模型的目录")
+    parser.add_argument("--good-load-dir2", type=str, default="./test/", help="加载我方智能体模型的目录")
+    parser.add_argument("--adv-load-dir", type=str, default="./test/", help="加载对手模型的目录")
+    # 评估
+    parser.add_argument("--restore", action="store_true", default=False, help="恢复模型")
+    parser.add_argument("--good-load-one-side", action="store_true", default=False, help="加载我方智能体的一侧模型")
+    parser.add_argument("--adv-load-one-side", action="store_true", default=False, help="加载对手的一侧模型")
+    parser.add_argument("--display", action="store_true", default=False, help="显示环境")
+    parser.add_argument("--save-gif-data", action="store_true", default=False, help="保存 GIF 数据")
+    parser.add_argument("--render-gif", action="store_true", default=False, help="渲染 GIF")
+    parser.add_argument("--benchmark", action="store_true", default=False, help="性能基准测试")
+    parser.add_argument("--benchmark-iters", type=int, default=10000, help="性能基准测试的迭代次数")
+    parser.add_argument("--seed", type=int, default=0, help="随机数种子")
+    parser.add_argument("--ratio", type=float, default=1, help="比例")
+    parser.add_argument("--n-envs", type=int, default=4, help="环境数量")
+    parser.add_argument("--save-summary", action="store_true", default=False, help="保存摘要信息")
+    parser.add_argument("--timeout", type=float, default=0.02, help="超时时间")
+    parser.add_argument("--max-num-neighbors", type=int, default="0", help="邻域中最多的智能体数量")
+    parser.add_argument("--last-adv", type=int, default="0", help="最后阶段中的对手数量")
+    parser.add_argument("--last-good", type=int, default="0", help="最后阶段中的我方智能体数量")
 
     if add_extra_flags is not None:
         parser = add_extra_flags(parser)
@@ -393,7 +370,7 @@ class Agent(multiprocessing.Process):
         return None
 
     def restore_trainable_weights(self, weights):
-        print('restore weights...................')
+        print('存储权重...................')
         restores = []
         for v in self.trainable_var_list:
             name, is_new = name_encode(v.name, convert=False)
@@ -405,7 +382,7 @@ class Agent(multiprocessing.Process):
 
     def load_one_side_weight(self):
         weight_dict = joblib.load(os.path.join(FLAGS.adv_load_dir, 'agent%d.weights' %self.index))
-        #print('load weight')
+        # print('加载权重')
         self.trainer.set_all_weights(weight_dict)
 
 
@@ -437,7 +414,7 @@ class Agent(multiprocessing.Process):
                     self.trainer.session = sess
                 tf.set_random_seed(self.index)
                 sess.run(tf.variables_initializer(self.var_list))
-                #print(self.index, sess.run(self.var_list[0]))
+                # print(self.index, sess.run(self.var_list[0]))
 
                 if self.load_one_side:
                     self.load_one_side_weight()
@@ -481,7 +458,7 @@ class Agent(multiprocessing.Process):
                     if self.update_event.is_set():
                         if self.sum_batch_size / self.tot_batch / self.obs_batch_size < .5 and not warned:
                             warned = True
-                            print("Batch load insufficient ({:.2%})! Consider higher timeout!".format(self.sum_batch_size / self.tot_batch / self.obs_batch_size))
+                            print("批量加载insufficient ({:.2%})! 考虑更高的timeout!".format(self.sum_batch_size / self.tot_batch / self.obs_batch_size))
                         sampled_index, data_length = self.main_conn.recv()
                         total_numbers = sum(self.obs_len) + sum(self.act_len) + self.n + sum(self.obs_len) + self.n
                         float_length = 4
@@ -606,7 +583,7 @@ class Environment(multiprocessing.Process):
             obs_n = env.reset()
             steps = 0
             sum_reward_n = [0.] * n
-            #print('Environment Reset')
+            # print('环境重置')
             num_epi += 1
             while True:
                 for i in range(n):
@@ -631,7 +608,7 @@ class Environment(multiprocessing.Process):
                     done_n[i] = np.array(done_n[i])
                 steps += 1
                 end_of_episode = steps > self.max_len or all(done_n)
-                #print(self.max_len)
+                # print(self.max_len)
                 experience_queue.put([self.index, obs_n, action_n, reward_n, new_obs_n, done_n, end_of_episode, sum_reward_n, info_n, good_attn_n, adv_attn_n])
                 if end_of_episode:
                     num_episodes = self.main_conn.recv()
@@ -667,7 +644,7 @@ def train(arglist, init_weight_config=None, cached_weights=None):
     curriculum = init_weight_config is not None
 
     if FLAGS.restore:
-        print('Loading weights from last stage...')
+        print('从最后阶段加载权重...')
         load_all_weights(FLAGS.good_load_dir1, FLAGS.good_load_dir2, FLAGS.num_adversaries, FLAGS.num_good, FLAGS.last_adv, FLAGS.last_good)
 
     register_environment(n_good=FLAGS.num_good, n_adv=FLAGS.num_adversaries, n_landmarks=0, n_food=FLAGS.num_food,
@@ -773,14 +750,14 @@ def train(arglist, init_weight_config=None, cached_weights=None):
                                     attention_mode=FLAGS.show_attention))
 
         tmp0 = time.time()
-        print("Starting building graph & initialization & restoring...")
+        print("开始构建图表&初始化&存储...")
 
         for i in range(n):
             agents[i].start()
         for i in range(n):
             main_agent_conns[i][0].recv()
 
-        print("Building graph & initialization & restoring done in {0:.2f} seconds".format(time.time() - tmp0))
+        print("构建图、初始化和存储完成 {0:.2f} 秒".format(time.time() - tmp0))
 
         for i in range(n_envs):
             envs[i].start()
@@ -812,7 +789,7 @@ def train(arglist, init_weight_config=None, cached_weights=None):
         agent_rewards = [[] for _ in range(n)]
 
         train_start_time = time.time()
-        print("Start training!")
+        print("开始训练!")
 
         sess = tf.Session()
 
@@ -894,7 +871,7 @@ def train(arglist, init_weight_config=None, cached_weights=None):
 
                 # print(num_steps_ahead, len(replay_buffer))
                 if FLAGS.train_rate > 0 and num_steps_ahead % FLAGS.train_rate == 0 and buffer_len >= FLAGS.batch_size * 5:
-                    # print("Ready to train for env {}".format(i))
+                    # print("准备好环境训练 {}".format(i))
                     main_env_conns[index][0].send(True)
                     cnt += 1
                 else:
@@ -919,7 +896,7 @@ def train(arglist, init_weight_config=None, cached_weights=None):
                 agent_mean_rew = [np.mean(np.array(agent_rewards[i][-10:])) for i in range(n)]
                 good = np.sum([agent_mean_rew[i] for i in range(FLAGS.num_adversaries, n)])
                 adv = np.sum([agent_mean_rew[i] for i in range(FLAGS.num_adversaries)])
-                print("{} train, interval time: {:.2f}, global time: {:.2f}".format(train_num, this_time, time.time() - ground_global_time), "good reward:", good, "adv reward", adv)
+                print("{} 训练序号, 间隔时间: {:.2f}, 全局时间: {:.2f}".format(train_num, this_time, time.time() - ground_global_time), "我方奖励:", good, "对方奖励", adv)
                 global_train_time.append(round(time.time() - ground_global_time, 3))
                 good_reward.append(good)
                 adv_reward.append(adv)
@@ -977,8 +954,8 @@ def train(arglist, init_weight_config=None, cached_weights=None):
     with open(global_time_file, 'wb') as fp:
         pickle.dump(global_train_time, fp)
 
-    print("Total training time: {}.".format(format_time(time.time() - t_start)))
-    report = {"agent_rewards": agent_rewards}
+    print("全局训练时间: {}.".format(format_time(time.time() - t_start)))
+    report = {"智能体奖励": agent_rewards}
     train_end_time = time.time()
     if FLAGS.train_rate == 0:
         json.dump(report, open(os.path.join(FLAGS.save_dir, "report.json"), "w"))
