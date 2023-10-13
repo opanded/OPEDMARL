@@ -7,7 +7,7 @@ from tensorflow.python.ops import nn
 
 class Pd(object):
     """
-    A particular probability distribution
+    特定的概率分布
     """
     def flatparam(self):
         raise NotImplementedError
@@ -24,7 +24,7 @@ class Pd(object):
 
 class PdType(object):
     """
-    Parametrized family of probability distributions
+    参数化概率分布族
     """
     def pdclass(self):
         raise NotImplementedError

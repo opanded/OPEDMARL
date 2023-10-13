@@ -32,32 +32,33 @@ def is_placeholder(x):
     return type(x) is tf.Tensor and len(x.op.inputs) == 0
 
 # ================================================================
-# Inputs
+# 输入
 # ================================================================
 
 
 class TfInput(object):
     def __init__(self, name="(unnamed)"):
-        """Generalized Tensorflow placeholder. The main differences are:
-            - possibly uses multiple placeholders internally and returns multiple values
-            - can apply light postprocessing to the value feed to placeholder.
+        """通用的TensorFlow占位符。主要区别包括：
+            - 可能在内部使用多个占位符, 并返回多个值
+            - 可以对提供给占位符的值进行轻微后处理。
         """
         self.name = name
 
     def get(self):
-        """Return the tf variable(s) representing the possibly postprocessed value
-        of placeholder(s).
+        """返回表示可能经过后处理的占位符值的tf变量(们)。
         """
         raise NotImplemented()
 
     def make_feed_dict(data):
-        """Given data input it to the placeholder(s)."""
+        """给定数据, 将其输入到占位符(们)中。
+        """
         raise NotImplemented()
 
 
 class PlacholderTfInput(TfInput):
     def __init__(self, placeholder):
-        """Wrapper for regular tensorflow placeholder."""
+        """常规TensorFlow占位符的包装器。
+        """
         super().__init__(placeholder.name)
         self._placeholder = placeholder
 
@@ -70,33 +71,32 @@ class PlacholderTfInput(TfInput):
 
 class BatchInput(PlacholderTfInput):
     def __init__(self, shape, dtype=tf.float32, name=None):
-        """Creates a placeholder for a batch of tensors of a given shape and dtype
+        """为给定形状和数据类型的张量批量创建一个占位符
 
-        Parameters
+        参数
         ----------
         shape: [int]
-            shape of a single elemenet of the batch
+            批次中单个元素的形状
         dtype: tf.dtype
-            number representation used for tensor contents
+            用于张量内容的数字表示
         name: str
-            name of the underlying placeholder
+            底层占位符的名称
         """
         super().__init__(tf.placeholder(dtype, [None] + list(shape), name=name))
 
 
 class Uint8Input(PlacholderTfInput):
     def __init__(self, shape, name=None):
-        """Takes input in uint8 format which is cast to float32 and divided by 255
-        before passing it to the model.
+        """接受uint8格式的输入, 在传递给模型之前转换为float32并除以255。
 
-        On GPU this ensures lower data transfer times.
+        在GPU上, 这可以确保较低的数据传输时间。
 
-        Parameters
+        参数
         ----------
         shape: [int]
-            shape of the tensor.
+            张量的形状。
         name: str
-            name of the underlying placeholder
+            底层占位符的名称
         """
 
         super().__init__(tf.placeholder(tf.uint8, [None] + list(shape), name=name))
@@ -108,21 +108,23 @@ class Uint8Input(PlacholderTfInput):
 
 
 def ensure_tf_input(thing):
-    """Takes either tf.placeholder of TfInput and outputs equivalent TfInput"""
+    """接受tf.placeholder或TfInput并输出等效的TfInput"""
     if isinstance(thing, TfInput):
         return thing
     elif is_placeholder(thing):
         return PlacholderTfInput(thing)
     else:
-        raise ValueError("Must be a placeholder or TfInput")
+        raise ValueError("必须是占位符或TfInput")
+
 
 # ================================================================
-# Mathematical utils
+# 数学工具
 # ================================================================
-
 
 def huber_loss(x, delta=1.0):
-    """Reference: https://en.wikipedia.org/wiki/Huber_loss"""
+    """参考：https://en.wikipedia.org/wiki/Huber_loss
+    计算Huber损失
+    """
     return tf.where(
         tf.abs(x) < delta,
         tf.square(x) * 0.5,
@@ -130,15 +132,13 @@ def huber_loss(x, delta=1.0):
     )
 
 # ================================================================
-# Optimizer utils
+# 优化器工具
 # ================================================================
 
-
 def minimize_and_clip(optimizer, objective, var_list, clip_val=10):
-    """Minimized `objective` using `optimizer` w.r.t. variables in
-    `var_list` while ensure the norm of the gradients for each
-    variable is clipped to `clip_val`
-    """    
+    """使用`optimizer`最小化`objective`，关于`var_list`中的变量，
+    同时确保每个变量的梯度范数被裁剪为`clip_val`
+    """
     if clip_val is None:
         return optimizer.minimize(objective, var_list=var_list)
     else:
@@ -148,20 +148,20 @@ def minimize_and_clip(optimizer, objective, var_list, clip_val=10):
                 gradients[i] = (tf.clip_by_norm(grad, clip_val), var)
         return optimizer.apply_gradients(gradients)
 
+# ================================================================
+# 全局会话
+# ================================================================
 
-# ================================================================
-# Global session
-# ================================================================
 
 SESS = None
 
 def get_session():
-    """Returns recently made Tensorflow session"""
+    """返回最近创建的TensorFlow会话"""
     return SESS or tf.get_default_session()
 
 
 def make_session(num_cpu):
-    """Returns a session that will use <num_cpu> CPU's only"""
+    """返回一个仅使用 <num_cpu> 个CPU的会话"""
     # print("num_cpu:", num_cpu)
     tf_config = tf.ConfigProto(
         device_count={"CPU": 1},
@@ -176,7 +176,7 @@ def set_session(sess):
 
 
 def single_threaded_session():
-    """Returns a session which will only use a single CPU"""
+    """返回一个仅使用单个CPU的会话"""
     return make_session(1)
 
 
@@ -184,33 +184,32 @@ ALREADY_INITIALIZED = set()
 
 
 def initialize():
-    """Initialize all the uninitialized variables in the global scope."""
+    """初始化全局范围内所有未初始化的变量"""
     new_variables = set(tf.global_variables()) - ALREADY_INITIALIZED
     get_session().run(tf.variables_initializer(new_variables))
     ALREADY_INITIALIZED.update(new_variables)
 
-
 # ================================================================
-# Scopes
+# 作用域
 # ================================================================
 
 
 def scope_vars(scope, trainable_only=False):
     """
-    Get variables inside a scope
-    The scope can be specified as a string
+    获取指定作用域内的变量
+    作用域可以通过字符串来指定
 
-    Parameters
+    参数
     ----------
-    scope: str or VariableScope
-        scope in which the variables reside.
+    scope: str 或 VariableScope
+        变量所在的作用域。
     trainable_only: bool
-        whether or not to return only the variables that were marked as trainable.
+        是否仅返回标记为可训练的变量。
 
-    Returns
+    返回
     -------
     vars: [tf.Variable]
-        list of variables in `scope`.
+        在`scope`内的变量列表。
     """
     return tf.get_collection(
         tf.GraphKeys.TRAINABLE_VARIABLES if trainable_only else tf.GraphKeys.GLOBAL_VARIABLES,
@@ -219,21 +218,21 @@ def scope_vars(scope, trainable_only=False):
 
 
 def scope_name():
-    """Returns the name of current scope as a string, e.g. deepq/q_func"""
+    """返回当前作用域的名称作为字符串，例如 deepq/q_func"""
     return tf.get_variable_scope().name
 
 
 def absolute_scope_name(relative_scope_name):
-    """Appends parent scope name to `relative_scope_name`"""
+    """将父作用域名称附加到`relative_scope_name`"""
     return scope_name() + "/" + relative_scope_name
 
 # ================================================================
-# Saving variables
+# 保存变量
 # ================================================================
 
 
 def load_state(fname, saver=None):
-    """Load all the variables to the current session from the location <fname>"""
+    """从位置<fname>加载所有变量到当前会话"""
     if saver is None:
         saver = tf.train.Saver()
     saver.restore(get_session(), fname+"model.ckpt")
@@ -248,12 +247,12 @@ def load_params_from(fname, scope):
 
 
 def save_state(fname, saver=None):
-    """Save all the variables in the current session to the location <fname>"""
+    """将当前会话中的所有变量保存到位置<fname>"""
     os.makedirs(os.path.dirname(fname), exist_ok=True)
     # print('shabi')
     if saver is None:
         saver = tf.train.Saver()
-    saver.save(get_session(), fname+"model.ckpt",meta_graph_suffix='meta',write_meta_graph=True,write_state=True)
+    saver.save(get_session(), fname+"model.ckpt", meta_graph_suffix='meta', write_meta_graph=True, write_state=True)
     return saver
 
 def save_variables(save_path, variables=None, sess=None):
@@ -276,7 +275,7 @@ def load_variables(load_path, variables=None, sess=None):
     loaded_params = joblib.load(os.path.expanduser(load_path))
     restores = []
     if isinstance(loaded_params, list):
-        assert len(loaded_params) == len(variables), 'number of variables loaded mismatches len(variables)'
+        assert len(loaded_params) == len(variables), '加载的变量数量与variables的长度不匹配'
         for d, v in zip(loaded_params, variables):
             restores.append(v.assign(d))
     else:
@@ -285,21 +284,20 @@ def load_variables(load_path, variables=None, sess=None):
 
     sess.run(restores)
 
-# ================================================================
-# Theano-like Function
-# ================================================================
 
+# ================================================================
+# 类似Theano的函数
+# ================================================================
 
 def function(inputs, outputs, updates=None, givens=None):
-    """Just like Theano function. Take a bunch of tensorflow placeholders and expersions
-    computed based on those placeholders and produces f(inputs) -> outputs. Function f takes
-    values to be feed to the inputs placeholders and produces the values of the experessions
-    in outputs.
+    """类似于Theano函数。接受一组基于TensorFlow占位符的占位符和表达式，
+    并生成 f(inputs) -> outputs 的函数。函数 f 接受要提供给占位符的值，
+    并生成输出中的表达式值。
 
-    Input values can be passed in the same order as inputs or can be provided as kwargs based
-    on placeholder name (passed to constructor or accessible via placeholder.op.name).
+    输入值可以按与输入相同的顺序传递，也可以基于占位符名称作为kwargs提供
+    （通过构造函数传递或通过占位符.op.name访问）。
 
-    Example:
+    示例：
         x = tf.placeholder(tf.int32, (), name="x")
         y = tf.placeholder(tf.int32, (), name="y")
         z = 3 * x + 2 * y
@@ -313,15 +311,13 @@ def function(inputs, outputs, updates=None, givens=None):
             assert lin(2, 2) == 10
             assert lin(x=2, y=3) == 12
 
-    Parameters
+    参数
     ----------
-    inputs: [tf.placeholder or TfInput]
-        list of input arguments
-    outputs: [tf.Variable] or tf.Variable
-        list of outputs or a single output to be returned from function. Returned
-        value will also have the same shape.
+    inputs: [tf.placeholder或TfInput]
+        输入参数的列表
+    outputs: [tf.Variable]或tf.Variable
+        要从函数返回的输出或要返回的单个输出。返回的值也将具有相同的形状。
     """
-    # return None
     if isinstance(outputs, list):
         return _Function(inputs, outputs, updates, givens=givens)
     elif isinstance(outputs, (dict, collections.OrderedDict)):
@@ -336,7 +332,7 @@ class _Function(object):
     def __init__(self, inputs, outputs, updates, givens, check_nan=False):
         for inpt in inputs:
             if not issubclass(type(inpt), TfInput):
-                assert len(inpt.op.inputs) == 0, "inputs should all be placeholders of rl_algs.common.TfInput"
+                assert len(inpt.op.inputs) == 0, "输入应该全部是rl_algs.common.TfInput的占位符"
         self.inputs = inputs
         updates = updates or []
         self.update_group = tf.group(*updates)
@@ -353,26 +349,24 @@ class _Function(object):
             feed_dict[inpt] = value
 
     def __call__(self, *args, **kwargs):
-        # return 0
-        assert len(args) <= len(self.inputs), "Too many arguments provided"
+        assert len(args) <= len(self.inputs), "提供了太多的参数"
         feed_dict = {}
-        # Update the args
+        # 更新参数
         for inpt, value in zip(self.inputs, args):
             self._feed_input(feed_dict, inpt, value)
-        # Update the kwargs
+        # 更新 kwargs
         kwargs_passed_inpt_names = set()
         for inpt in self.inputs[len(args):]:
             inpt_name = inpt.name.split(':')[0]
             inpt_name = inpt_name.split('/')[-1]
             assert inpt_name not in kwargs_passed_inpt_names, \
-                "this function has two arguments with the same name \"{}\", so kwargs cannot be used.".format(inpt_name)
+                "此函数具有相同名称的两个参数 \"{}\"，因此无法使用kwargs。".format(inpt_name)
             if inpt_name in kwargs:
                 kwargs_passed_inpt_names.add(inpt_name)
                 self._feed_input(feed_dict, inpt, kwargs.pop(inpt_name))
             else:
-                assert inpt in self.givens, "Missing argument " + inpt_name
-        assert len(kwargs) == 0, "Function got extra arguments " + str(list(kwargs.keys()))
-        # Update feed dict with givens.
+                assert inpt in self.givens, "缺少参数 " + inpt_name
+        assert len(kwargs) == 0, "函数获得了额外的参数 " + str(list(kwargs.keys()))
         for inpt in self.givens:
             feed_dict[inpt] = feed_dict.get(inpt, self.givens[inpt])
         # print("AA", self.sess, self.sess.graph, self.outputs_update)
@@ -381,5 +375,5 @@ class _Function(object):
         # results = []
         if self.check_nan:
             if any(np.isnan(r).any() for r in results):
-                raise RuntimeError("Nan detected")
+                raise RuntimeError("检测到NaN")
         return results

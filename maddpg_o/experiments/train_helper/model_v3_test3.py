@@ -17,7 +17,7 @@ def mlp_model_agent_q_ising(input, num_outputs, scope, index, n_adv=3, n_good=5,
     with tf.variable_scope(scope, reuse=reuse):
         basic = 0
         shorton = 1
-        # split actions
+        # 分割动作
         num_test = num_units // 2
 
 
@@ -28,7 +28,7 @@ def mlp_model_agent_q_ising(input, num_outputs, scope, index, n_adv=3, n_good=5,
         other_good_action = tf.concat([input_action[:, 2*n_adv:2*index], input_action[:, 2*(index+1):]], 1)
         other_adv_action = input_action[:,:n_adv*2]
 
-        # split self obs
+        # 分割自己的观测
         length_wolf = 5
         length_sheep = 5
         self_start = n_adv*length_wolf+(index-n_adv)*length_sheep
@@ -106,7 +106,7 @@ def mlp_model_agent_q_ising(input, num_outputs, scope, index, n_adv=3, n_good=5,
         other_good_out = tf.squeeze(tf.matmul(other_good_out_attn, tf.transpose(good_out_new, [0,2,1])), 1)
         other_good_out = tf.contrib.layers.layer_norm(other_good_out)
         other_good_out = tf.nn.relu(other_good_out)
-        # merge layer for all
+        # 合并所有层
 
         input_merge = tf.concat([self_out, other_good_out], 1)
 
@@ -121,8 +121,8 @@ def mlp_model_agent_q_ising(input, num_outputs, scope, index, n_adv=3, n_good=5,
         return out
 
 def mlp_model_agent_p_ising(input, num_outputs, scope, index, n_adv=2, n_good=5, n_land=6, num_units=64, with_action=False, share_weights=False, reuse=None):
-    # This model takes as input an observation and returns values of all actions
-    #print('input ....................................', input)
+    # 该模型将观察结果作为输入并返回所有操作的值
+    # print('输入 ....................................', input)
     num_neighbor = 4
     if reuse is None:
         reuse = (tf.AUTO_REUSE if share_weights else False)
@@ -155,8 +155,8 @@ def mlp_model_agent_p_ising(input, num_outputs, scope, index, n_adv=2, n_good=5,
         #print('othe good...................', other_good_in)
         for i in range(num_neighbor):
             pos = other_good_in[:, i:i+1]
-            #print('othere pos ..................', pos)
-            #tmp = tf.concat([pos], axis=1)
+            # print('othere pos ..................', pos)
+            # tmp = tf.concat([pos], axis=1)
             other_good_ins.append(pos)
 
         #print('other_good_input..................', other_good_ins)
@@ -187,14 +187,14 @@ def mlp_model_agent_p_ising(input, num_outputs, scope, index, n_adv=2, n_good=5,
         return out
 
 def mlp_model_agent_p(input, num_outputs, scope, index,  n_adv=2, n_good=5, n_land=6, num_units=64, with_action=False, share_weights=False, reuse=None):
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     #print(input)
     if reuse is None:
         reuse = (tf.AUTO_REUSE if share_weights else False)
     with tf.variable_scope(scope, reuse=reuse):
         num_test = num_units // 2
         batch_size = input.shape[0].value
-        self_land = input[:, 5:5+3*n_land] # Need modification
+        self_land = input[:, 5:5+3*n_land] # 需要修改
 
         if with_action:
             self_action = input[:, -5:]
@@ -245,7 +245,7 @@ def mlp_model_agent_p(input, num_outputs, scope, index,  n_adv=2, n_good=5, n_la
                 else:
                     tmp = tf.concat([pos, vel, is_live], axis=1)
                 other_good_ins.append(tmp)
-            #print('benchmark ............', other_good_ins)
+            # print('benchmark ............', other_good_ins)
             # other_good_ins = tf.split(other_good_ins, n_good - 1, axis=1)
             # other_good_outs = []
 
@@ -558,7 +558,7 @@ def mlp_model_adv_p(input, num_outputs, scope, index, n_adv=2, n_good=5, n_land=
 def mlp_model_agent_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_land=6, num_units=64, share_weights=False, reuse=None):
     if reuse is None:
         reuse = tf.AUTO_REUSE if share_weights else False
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     with tf.variable_scope(scope, reuse=reuse):
         basic = 0
         shorton = 1
@@ -614,7 +614,7 @@ def mlp_model_agent_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_lan
             other_good_outs = []
 
 
-        #wolf_mlp
+        # wolf_mlp
         other_adv_ins = []
         for i in range(n_adv):
             other_adv_beg = length_wolf*i
@@ -697,7 +697,7 @@ def mlp_model_agent_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_lan
 def mlp_model_adv_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_land=6, share_weights=False, num_units=64, reuse=None):
     if reuse is None:
         reuse = tf.AUTO_REUSE if share_weights else False
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     with tf.variable_scope(scope, reuse=reuse):
         # split actions
         basic = 0
@@ -818,7 +818,7 @@ def mlp_model_adv_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_land=
         other_good_out = tf.nn.relu(other_good_out)
 
 
-        # merge layer for all
+        # 合并所有层
 
         if n_adv ==1:
             input_merge = tf.concat([self_out, other_good_out], 1)
@@ -838,7 +838,7 @@ def mlp_model_adv_q(input, num_outputs, scope, index, n_adv=3, n_good=5, n_land=
         return out
 
 def mlp_model(input, num_outputs, scope, reuse=False, num_units=64, rnn_cell=None):
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     with tf.variable_scope(scope, reuse=reuse):
         out = input
         out = tf.contrib.layers.fully_connected(out, num_outputs=num_units, activation_fn=tf.nn.relu)

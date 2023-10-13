@@ -35,7 +35,7 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
         act_pdtype_n = [make_pdtype(act_space) for act_space in act_space_n]
 
-        # set up placeholders
+        # 设置占位符
         obs_ph_n = make_obs_ph_n
         act_ph_n = [act_pdtype_n[i].sample_placeholder([None], name="action"+str(i)) for i in range(len(act_space_n))]
 
@@ -45,7 +45,7 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
         p = p_func(p_input, int(act_pdtype_n[p_index].param_shape()[0]), scope="p_func", num_units=num_units)
         p_func_vars = U.scope_vars(U.absolute_scope_name("p_func"))
 
-        # wrap parameters in distribution
+        # 将参数包裹在分布中
         act_pd = act_pdtype_n[p_index].pdfromflat(p)
 
         act_sample = act_pd.sample()
@@ -63,14 +63,14 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
         optimize_expr = U.minimize_and_clip(optimizer, loss, p_func_vars, grad_norm_clipping)
 
-        # Create callable functions
+        # 创建可调用函数
         train = U.function(inputs=obs_ph_n + act_ph_n, outputs=loss, updates=[optimize_expr])
         act = U.function(inputs=[obs_ph_n[p_index]], outputs=act_sample)
         # attention = U.function(inputs=[obs_ph_n[p_index]], outputs=[attn.good_attn, attn.adv_attn])
         p_values = U.function([obs_ph_n[p_index]], p)
         # print([obs_ph_n[p_index]], act_sample)
 
-        # target network
+        # 目标网络
         target_p = p_func(p_input, int(act_pdtype_n[p_index].param_shape()[0]), scope="target_p_func", num_units=num_units)
         target_p_func_vars = U.scope_vars(U.absolute_scope_name("target_p_func"))
         update_target_p = make_update_exp(p_func_vars, target_p_func_vars)
@@ -83,10 +83,10 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
 def q_train(make_obs_ph_n, act_space_n, q_index, q_func, optimizer, grad_norm_clipping=None, local_q_func=False, scope="trainer", reuse=None, num_units=64):
     with tf.variable_scope(scope, reuse=reuse):
-        # create distribtuions
+        # 创建发行版
         act_pdtype_n = [make_pdtype(act_space) for act_space in act_space_n]
 
-        # set up placeholders
+        # 设置占位符
         n = len(act_space_n)
         obs_ph_n = make_obs_ph_n
         act_ph_n = [act_pdtype_n[i].sample_placeholder([None], name="action"+str(i)) for i in range(n)]
@@ -102,18 +102,18 @@ def q_train(make_obs_ph_n, act_space_n, q_index, q_func, optimizer, grad_norm_cl
 
         q_loss = tf.reduce_mean(tf.square(q - target_ph))
 
-        # viscosity solution to Bellman differential equation in place of an initial condition
+        # 贝尔曼微分方程的粘度解代替初始条件
         q_reg = tf.reduce_mean(tf.square(q))
         loss = q_loss #+ 1e-3 * q_reg
 
         # print(reuse)
         optimize_expr = U.minimize_and_clip(optimizer, loss, q_func_vars, grad_norm_clipping)
 
-        # Create callable functions
+        # 创建可调用函数
         train = U.function(inputs=obs_ph_n + act_ph_n + [target_ph], outputs=loss, updates=[optimize_expr])
         q_values = U.function(obs_ph_n + act_ph_n, q)
 
-        # target network
+        # 目标网络
         target_q = q_func(q_input, 1, scope="target_q_func", num_units=num_units)[:,0]
         target_q_func_vars = U.scope_vars(U.absolute_scope_name("target_q_func"))
         update_target_q = make_update_exp(q_func_vars, target_q_func_vars)
@@ -134,7 +134,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         for i in range(self.n):
             obs_ph_n.append(U.BatchInput(obs_shape_n[i], name="observation"+str(i)).get())
 
-        # Create all the functions necessary to train the model
+        # 创建训练模型所需的所有函数
         self.q_train, self.q_update, self.q_debug = q_train(
             scope=self.name,
             make_obs_ph_n=obs_ph_n,
@@ -158,7 +158,7 @@ class MADDPGAgentTrainer(AgentTrainer):
             local_q_func=local_q_func,
             num_units=args.num_units
         )
-        # Create experience buffer
+        # 创建经验缓冲区
         self.replay_buffer = ReplayBuffer(1e6)
         self.max_replay_buffer_len = args.batch_size * args.max_episode_len
         self.replay_sample_index = None
@@ -172,7 +172,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         return self.act(obs[None])[0]
 
     def experience(self, obs, act, rew, new_obs, done):
-        # Store transition in the replay buffer.
+        # 将转换存储在重播缓冲区中。
         self.replay_buffer.add(obs, act, rew, new_obs, float(done))
 
     def preupdate(self):
@@ -306,7 +306,7 @@ class MADDPGAgentTrainer(AgentTrainer):
     def update(self, agents):
 
         self.replay_sample_index = self.replay_buffer.make_index(self.args.batch_size)
-        # collect replay sample from all agents
+        # 从所有智能体收集重放样本
         obs_n = []
         obs_next_n = []
         act_n = []
@@ -318,7 +318,7 @@ class MADDPGAgentTrainer(AgentTrainer):
             act_n.append(act)
         obs, act, rew, obs_next, done = self.replay_buffer.sample_index(index)
 
-        # train q network
+        # 训练q网络
         num_sample = 1
         target_q = 0.0
         for i in range(num_sample):
@@ -328,7 +328,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         target_q /= num_sample
         q_loss = self.q_train(*(obs_n + act_n + [target_q]))
 
-        # train p network
+        # 训练p网络
         p_loss = self.p_train(*(obs_n + act_n))
 
         self.p_update()
