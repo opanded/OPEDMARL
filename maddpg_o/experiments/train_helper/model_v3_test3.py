@@ -13,7 +13,7 @@ def mlp_model_agent_q_ising(input, num_outputs, scope, index, n_adv=3, n_good=5,
     if reuse is None:
         reuse = tf.AUTO_REUSE if share_weights else False
 
-    # This model takes as input an observation and returns values of all actions
+    # 该模型将观察结果作为输入并返回所有操作的值
     with tf.variable_scope(scope, reuse=reuse):
         basic = 0
         shorton = 1
