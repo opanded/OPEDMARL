@@ -10,15 +10,13 @@ python3 -m maddpg_o.experiments.train_normal \
     --num-agents=6\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="../result/adversarial/baseline_maddpg/6agents/6agents_1/" \
+    --save-dir="./result/adversarial/baseline_maddpg/6agents/6agents_1/" \
     --save-rate=30 \
     --max-num-train=3000\
     --good-max-num-neighbors=6 \
     --adv-max-num-neighbors=6 \
     --ratio=1.5 \
     --seed=16 \
-
-
 
 # 12 agents
 # python3 -m maddpg_o.experiments.train_normal \

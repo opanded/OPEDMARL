@@ -50,7 +50,7 @@ def parse_args():
     parser.add_argument("--num-food", type=int, default="0", help="食物的数量")
     parser.add_argument("--num-forests", type=int, default="0", help="森林的数量")
     parser.add_argument("--prosp-dist", type=float, default="0.6", help="前景邻居距离")
-    parser.add_argument("--adv-sight", type.float, default="1", help="对方视野")
+    parser.add_argument("--adv-sight", type=float, default="1", help="对方视野")
     parser.add_argument("--good-sight", type=float, default="1", help="我方视野")
     parser.add_argument("--ratio", type=float, default="1", help="地图的大小")
     parser.add_argument("--seed", type=int, default="1", help="随机数种子")

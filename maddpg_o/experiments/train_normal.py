@@ -47,14 +47,14 @@ def parse_args():
     parser.add_argument("--num-food", type=int, default="0", help="食物的数量")
     parser.add_argument("--num-forests", type=int, default="0", help="森林的数量")
     parser.add_argument("--prosp-dist", type=float, default="0.6", help="前景邻居距离")
-    parser.add_argument("--adv-sight", type.float, default="1", help="对方视野")
+    parser.add_argument("--adv-sight", type=float, default="1", help="对方视野")
     parser.add_argument("--good-sight", type=float, default="1", help="我方视野")
-    parser.add_argument("--ratio", type.float, default="1", help="比率")
+    parser.add_argument("--ratio", type=float, default="1", help="比率")
     parser.add_argument("--no-wheel", action="store_true", default=False)
     parser.add_argument("--benchmark", action="store_true", default=False)
-    parser.add_argument("--good-max-num-neighbors", type.int, default="0", help="邻域中最多的我方智能体数量")
-    parser.add_argument("--adv-max-num-neighbors", type.int, default="0", help="邻域中最多的对方智能体数量")
-    parser.add_argument("--seed", type.int, default="1", help="随机数种子")
+    parser.add_argument("--good-max-num-neighbors", type=int, default="0", help="邻域中最多的我方智能体数量")
+    parser.add_argument("--adv-max-num-neighbors", type=int, default="0", help="邻域中最多的对方智能体数量")
+    parser.add_argument("--seed", type=int, default="1", help="随机数种子")
     parser.add_argument("--load-one-side", action="store_true", default=False)
     return parser.parse_args()
 
@@ -207,11 +207,11 @@ def train(arglist):
         # num_adversaries = min(env.n, 1)
         trainers = []
         for i in range(arglist.num_adversaries):
-            trainer = get_adv_trainer(i, "对方{}".format(i), env, obs_shape_n, session)
+            trainer = get_adv_trainer(i, "adv{}".format(i), env, obs_shape_n, session)
             trainers.append(trainer)
 
         for i in range(arglist.num_adversaries, env.n):
-            trainer = get_good_trainer(i, "我方{}".format(i), env, obs_shape_n, session)
+            trainer = get_good_trainer(i, "good{}".format(i), env, obs_shape_n, session)
             trainers.append(trainer)
 
         #trainers = get_trainers(env, arglist.num_adversaries, obs_shape_n, arglist)

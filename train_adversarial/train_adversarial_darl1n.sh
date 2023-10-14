@@ -12,8 +12,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
     --num-landmark=3\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="../result/adversarial/darl1n/6agents/6agents_1" \
-    --adv-load-dir="../result/adversarial/baseline_maddpg/6agents/6agents_1" \
+    --save-dir="./result/adversarial/darl1n/6agents/6agents_1" \
+    --adv-load-dir="./result/adversarial/baseline_maddpg/6agents/6agents_1" \
     --save-rate=30 \
     --prosp-dist=0.1 \
     --eva-max-episode-len=25 \
