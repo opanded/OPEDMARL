@@ -896,7 +896,7 @@ def train(arglist, init_weight_config=None, cached_weights=None):
                 agent_mean_rew = [np.mean(np.array(agent_rewards[i][-10:])) for i in range(n)]
                 good = np.sum([agent_mean_rew[i] for i in range(FLAGS.num_adversaries, n)])
                 adv = np.sum([agent_mean_rew[i] for i in range(FLAGS.num_adversaries)])
-                print("{} 训练序号, 间隔时间: {:.2f}, 全局时间: {:.2f}".format(train_num, this_time, time.time() - ground_global_time), "我方奖励:", good, "对方奖励", adv)
+                print("{} steps, 间隔时间: {:.2f}, 全局时间: {:.2f}".format(train_num, this_time, time.time() - ground_global_time), "我方奖励:", good, "对方奖励", adv)
                 global_train_time.append(round(time.time() - ground_global_time, 3))
                 good_reward.append(good)
                 adv_reward.append(adv)
