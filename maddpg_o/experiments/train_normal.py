@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 from .train_helper.model_v3_test3 import   mlp_model, mean_field_adv_q_model, mean_field_agent_q_model
 import joblib
 from functools import partial
+import warnings
+warnings.filterwarnings("ignore")
 
 def parse_args():
     parser = argparse.ArgumentParser("多智能体环境的强化学习实验")

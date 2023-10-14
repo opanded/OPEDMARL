@@ -4,6 +4,8 @@ import os
 import joblib
 import numpy as np
 import time
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def train_epc(arglist):

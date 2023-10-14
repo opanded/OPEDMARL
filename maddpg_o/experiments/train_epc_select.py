@@ -5,6 +5,8 @@ import numpy as np
 import os
 import argparse
 import json
+import warnings
+warnings.filterwarnings("ignore")
 
 def show_group_statistics(rewards, category):
     sum_rewards = np.sum(rewards, axis=0)

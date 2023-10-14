@@ -23,6 +23,8 @@ import gc
 import imageio
 import matplotlib.pyplot as plt
 import pickle
+import warnings
+warnings.filterwarnings("ignore")
 
 FLAGS = None
 # import multiagent

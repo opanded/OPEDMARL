@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 from functools import partial
 import os
 import joblib
+import warnings
+warnings.filterwarnings("ignore")
 
 def parse_args():
     parser = argparse.ArgumentParser("多智能体环境的强化学习实验")

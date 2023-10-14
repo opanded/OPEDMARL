@@ -14,6 +14,10 @@ import tensorflow.contrib.layers as layers
 import json
 import imageio
 import joblib
+import warnings
+
+warnings.filterwarnings("ignore")
+
 
 def parse_args():
     parser = argparse.ArgumentParser("多智能体环境的强化学习实验")
@@ -300,19 +304,32 @@ if __name__== "__main__":
             print('对方加载文件夹为', arglist.adv_load_dir)
             evaluate_env = make_env(arglist.scenario, arglist, evaluate= True)
 
-        if arglist.load_one_side:
-            print('加载一侧状态...')
-            # Load adversary agents weights
-            one_side_weights = None
-            if node_id > CENTRAL_CONTROLLER:
-                load_weights(trainers, node_id - 1 - arglist.num_adversaries)
-                one_side_weights = trainers[node_id - 1 - arglist.num_adversaries].get_weigths()
-            one_side_weights = comm.gather(one_side_weights, root = 0)
-            one_side_weights = comm.bcast(one_side_weights, root = 0)
-            if node_id > CENTRAL_CONTROLLER:
-                for i, agent in enumerate(trainers):
-                    if i < arglist.num_adversaries:
-                        agent.set_weigths(one_side_weights[i+1])
+# 如果命令行参数中指定了 load_one_side 为 True，则执行以下代码
+if arglist.load_one_side:
+    # 在控制台打印一条信息，表示正在加载一侧的状态
+    print('加载一侧状态...')
+    # Load adversary agents weights
+    # 定义一个变量 one_side_weights，用来存储对手智能体的权重
+    one_side_weights = None
+    # 如果当前节点编号大于中央控制器的编号，说明当前节点是一个学习者节点
+    if node_id > CENTRAL_CONTROLLER:
+        # 调用 load_weights 函数，从文件中加载当前节点对应的智能体的权重，并赋值给 trainers 列表中的相应元素
+        load_weights(trainers, node_id - 1 - arglist.num_adversaries)
+        # 调用 get_weigths 方法，从 trainers 列表中获取当前节点对应的智能体的权重，并赋值给 one_side_weights 变量
+        one_side_weights = trainers[node_id - 1 - arglist.num_adversaries].get_weigths()
+    # 使用 MPI 通信对象 comm 的 gather 方法，将所有节点的 one_side_weights 变量收集到根节点（编号为 0 的节点）上，并返回一个列表
+    one_side_weights = comm.gather(one_side_weights, root = 0)
+    # 使用 MPI 通信对象 comm 的 bcast 方法，将根节点上的 one_side_weights 列表广播到所有节点上，并返回一个列表
+    one_side_weights = comm.bcast(one_side_weights, root = 0)
+    # 如果当前节点编号大于中央控制器的编号，说明当前节点是一个学习者节点
+    if node_id > CENTRAL_CONTROLLER:
+        # 使用 enumerate 函数遍历 trainers 列表，得到每个智能体的索引 i 和对象 agent
+        for i, agent in enumerate(trainers):
+            # 如果索引 i 小于 arglist.num_adversaries 的值，说明当前智能体是一个对手智能体
+            if i < arglist.num_adversaries:
+                # 调用 set_weigths 方法，将 one_side_weights 列表中索引为 i+1 的元素（即另一侧对应的对手智能体的权重）赋值给当前智能体
+                agent.set_weigths(one_side_weights[i+1])
+
 
 
         if arglist.restore:
