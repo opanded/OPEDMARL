@@ -13,4 +13,4 @@ python3  -m maddpg_o.experiments.evaluate_epc \
 --good-share-weights \
 --adv-share-weights \
 --num-units=64 \
---good-save-dir="../result/ising/epc/9agents/9agents_eva/" \
+--good-save-dir="./result/ising/epc/9agents/9agents_eva/" \

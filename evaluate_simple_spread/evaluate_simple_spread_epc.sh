@@ -15,4 +15,4 @@ python3 -m maddpg_o.experiments.evaluate_epc\
     --adv-share-weights \
     --num-units=64 \
     --ratio=1 \
-    --good-save-dir="../result/simple_spread/epc/3agents/3agents_eva/" \
+    --good-save-dir="./result/simple_spread/epc/3agents/3agents_eva/" \

@@ -2,7 +2,7 @@
 
 # 6 agents
 mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
-    --scenario=grassland \
+    --scenario=adversarial \
     --good-sight=0.2 \
     --adv-sight=100 \
     --num-agents=6 \
@@ -12,8 +12,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
     --num-landmark=3\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="./result/grassland/darl1n/6agents/6agents_1" \
-    --adv-load-dir="./result/grassland/baseline_maddpg/6agents/6agents_1" \
+    --save-dir="./result/adversarial/darl1n/6agents/6agents_1" \
+    --adv-load-dir="./result/adversarial/baseline_maddpg/6agents/6agents_1" \
     --save-rate=1 \
     --prosp-dist=0.1 \
     --eva-max-episode-len=25 \
@@ -28,9 +28,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 
 
 # 12 agents
-
 # mpirun -n 7 python3  -m maddpg_o.experiments.train_darl1n \
-#     --scenario=grassland \
+#     --scenario=adversarial \
 #     --good-sight=0.25 \
 #     --adv-sight=100 \
 #     --num-agents=12 \
@@ -41,8 +40,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=6\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="./result/grassland/darl1n/12agents/12agents_1" \
-#     --adv-load-dir="./result/grassland/baseline_maddpg/12agents/12agents_1" \
+#     --save-dir="./result/adversarial/darl1n/12agents/12agents_1" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/12agents/12agents_1" \
 #     --save-rate=1 \
 #     --prosp-dist=0.15 \
 #     --good-max-num-neighbors=12 \
@@ -61,7 +60,7 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 # # 24 agents
 #
 # mpirun -n 13 python3  -m maddpg_o.experiments.train_darl1n \
-#   --scenario=grassland \
+#   --scenario=adversarial \
 #   --good-sight=0.3 \
 #   --adv-sight=100 \
 #   --num-agents=24 \
@@ -72,8 +71,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 #   --num-landmark=12\
 #   --good-policy=maddpg \
 #   --adv-policy=maddpg \
-#   --save-dir="./result/grassland/darl1n/24agents/24agents_1" \
-#   --adv-load-dir="./result/grassland/baseline_maddpg/24agents/24agents_1" \
+#   --save-dir="./result/adversarial/darl1n/24agents/24agents_1" \
+#   --adv-load-dir="./result/adversarial/baseline_maddpg/24agents/24agents_1" \
 #   --save-rate=1 \
 #   --prosp-dist=0.2 \
 #   --eva-max-episode-len=35 \
@@ -90,10 +89,10 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 #
 #
 #
-#
-# # 48 agents
+
+# 48 agents
 # mpirun -n 25 python3  -m maddpg_o.experiments.train_darl1n \
-#     --scenario=grassland \
+#     --scenario=adversarial \
 #     --good-sight=0.35 \
 #     --adv-sight=100 \
 #     --num-agents=48 \
@@ -103,8 +102,8 @@ mpirun -n 4 python3  -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=24\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="./result/grassland/darl1n/48agents/48agents_1" \
-#     --adv-load-dir="./result/grassland/baseline_maddpg/48agents/48agents_1" \
+#     --save-dir="./result/adversarial/darl1n/48agents/48agents_1" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/48agents/48agents_1" \
 #     --save-rate=1 \
 #     --prosp-dist=0.05 \
 #     --eva-max-episode-len=40 \

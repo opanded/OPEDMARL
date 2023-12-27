@@ -34,15 +34,15 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=1024, help="同时优化的回合数量")
     parser.add_argument("--num-units", type=int, default=64, help="多层感知机中的单元数量")
     # 检查点
-    parser.add_argument("--good-save-dir", type=str, default="../trained_policy/", help="保存我方训练状态和模型的目录")
-    parser.add_argument("--adv-save-dir", type=str, default="../trained_policy/", help="保存对手训练状态和模型的目录")
+    parser.add_argument("--good-save-dir", type=str, default="./trained_policy/", help="保存我方训练状态和模型的目录")
+    parser.add_argument("--adv-save-dir", type=str, default="./trained_policy/", help="保存对手训练状态和模型的目录")
     parser.add_argument("--save-rate", type=int, default=20, help="每完成一定数量的训练后保存模型")
     parser.add_argument("--train-rate", type=int, default=20, help="每完成一定数量的回合后训练模型")
     parser.add_argument("--load-dir", type=str, default="", help="加载训练状态和模型的目录")
     # 评估
     parser.add_argument("--restore", action="store_true", default=False)
     parser.add_argument("--display", action="store_true", default=False)
-    parser.add_argument("--plots-dir", type=str, default="../learning_curves/", help="保存绘图数据的目录")
+    parser.add_argument("--plots-dir", type=str, default="./learning_curves/", help="保存绘图数据的目录")
     parser.add_argument("--num-good", type=int, default="0", help="我方代理的数量")
     parser.add_argument("--num-landmarks", type=int, default="0", help="地标的数量")
     parser.add_argument("--num-agents", type=int, default="0", help="智能体的数量")
@@ -162,7 +162,7 @@ def evaluate_policy(env, trainers, size_transitions, display = False):
                 frames.append(env.render('rgb_array')[0])
                 print('The step is', step)
                 if (terminal or done):
-                    gif_path = '../visualize/' + arglist.scenario + '/' + arglist.method + '/%dagents/gifs/' %arglist.num_agents
+                    gif_path = './visualize/' + arglist.scenario + '/' + arglist.method + '/%dagents/gifs/' %arglist.num_agents
                     touch_path(gif_path)
                     imageio.mimsave(gif_path + '%d.gif' %num_transitions, frames, duration=0.15)
                     plt.imshow(frames[-1])

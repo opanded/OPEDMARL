@@ -10,8 +10,8 @@ python3  -m maddpg_o.experiments.evaluate_normal \
     --num-landmark=3 \
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --good-save-dir="../result/grassland/darl1n/6agents/6agents_eva" \
-    --adv-save-dir="../result/grassland/baseline_maddpg/6agents/6agents_eva" \
+    --good-save-dir="./result/grassland/darl1n/6agents/6agents_eva" \
+    --adv-save-dir="./result/grassland/baseline_maddpg/6agents/6agents_eva" \
     --save-rate=100 \
     --train-rate=100 \
     --prosp-dist=0.1 \

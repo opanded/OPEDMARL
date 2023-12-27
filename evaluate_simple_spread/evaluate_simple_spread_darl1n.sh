@@ -10,7 +10,7 @@ python3  -m maddpg_o.experiments.evaluate_normal \
     --num-landmark=1\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --good-save-dir="../result/simple_spread/darl1n/1agents/1agents_1/" \
+    --good-save-dir="./result/simple_spread/darl1n/1agents/1agents_1/" \
     --save-rate=100 \
     --train-rate=100 \
     --ratio=1 \

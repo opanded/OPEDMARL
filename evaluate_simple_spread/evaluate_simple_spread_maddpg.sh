@@ -10,7 +10,7 @@ python3  -m maddpg_o.experiments.evaluate_normal \
     --num-landmark=3 \
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --good-save-dir="../result/simple_spread/maddpg/3agents/3agents_eva/"\
+    --good-save-dir="./result/simple_spread/maddpg/3agents/3agents_eva/"\
     --save-rate=100 \
     --train-rate=100 \
     --max-episode-len=25 \

@@ -18,7 +18,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --adv-policy=att-maddpg \
     --good-share-weights \
     --adv-share-weights \
-    --save-dir="../result/ising/epc/9agents/9agents_1" \
+    --save-dir="./result/ising/epc/9agents/9agents_1" \
     --save-rate=10 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
@@ -46,9 +46,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/ising/epc/9agents/9agents_1" \
-#     --good-load-dir2="../result/ising/epc/9agents/9agents_1" \
-#     --save-dir="../result/ising/epc/16agents/16agents_1" \
+#     --good-load-dir1="./result/ising/epc/9agents/9agents_1" \
+#     --good-load-dir2="./result/ising/epc/9agents/9agents_1" \
+#     --save-dir="./result/ising/epc/16agents/16agents_1" \
 #     --save-rate=10\
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
@@ -77,9 +77,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/ising/epc/16agents/16agents_1" \
-#     --good-load-dir2="../result/ising/epc/16agents/16agents_1" \
-#     --save-dir="../result/ising/epc/25agents/25agents_1" \
+#     --good-load-dir1="./result/ising/epc/16agents/16agents_1" \
+#     --good-load-dir2="./result/ising/epc/16agents/16agents_1" \
+#     --save-dir="./result/ising/epc/25agents/25agents_1" \
 #     --save-rate=10 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
@@ -109,9 +109,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/ising/epc/25agents/25agents_1" \
-#     --good-load-dir2="../result/ising/epc/25agents/25agents_1" \
-#     --save-dir="../result/ising/epc/64agents/64agents_1" \
+#     --good-load-dir1="./result/ising/epc/25agents/25agents_1" \
+#     --good-load-dir2="./result/ising/epc/25agents/25agents_1" \
+#     --save-dir="./result/ising/epc/64agents/64agents_1" \
 #     --save-rate=10 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \

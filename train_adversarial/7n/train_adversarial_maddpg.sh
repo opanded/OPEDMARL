@@ -10,8 +10,8 @@ python3 -m maddpg_o.experiments.train_normal \
     --num-agents=6\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --adv-load-dir="../result/adversarial/baseline_maddpg/6agents/6agents_1/"\
-    --save-dir="../result/adversarial/maddpg/6agents/6agents_1" \
+    --adv-load-dir="./result/adversarial/baseline_maddpg/6agents/6agents_1/"\
+    --save-dir="./result/adversarial/maddpg/6agents/6agents_1" \
     --save-rate=1 \
     --max-num-train=2000\
     --good-max-num-neighbors=6 \
@@ -31,8 +31,8 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=12\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --adv-load-dir="../result/adversarial/baseline_maddpg/12agents/12agents_1/"\
-#     --save-dir="../result/adversarial/maddpg/12agents/12agents_1/" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/12agents/12agents_1/"\
+#     --save-dir="./result/adversarial/maddpg/12agents/12agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=2000\
 #     --good-max-num-neighbors=12 \
@@ -53,8 +53,8 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=24\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --adv-load-dir="../result/adversarial/baseline_maddpg/24agents/24agents_1/"\
-#     --save-dir="../result/adversarial/maddpg/24agents/24agents_1/" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/24agents/24agents_1/"\
+#     --save-dir="./result/adversarial/maddpg/24agents/24agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=600\
 #     --good-max-num-neighbors=24 \
@@ -75,8 +75,8 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=48\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --adv-load-dir="../result/adversarial/maddpg/baseline_maddpg/48agents/48agents_1/" \
-#     --save-dir="../result/adversarial/maddpg/48agents/48agents_1/" \
+#     --adv-load-dir="./result/adversarial/maddpg/baseline_maddpg/48agents/48agents_1/" \
+#     --save-dir="./result/adversarial/maddpg/48agents/48agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=100\
 #     --good-max-num-neighbors=48 \

@@ -15,7 +15,7 @@ mpirun -n 10 python3  -m maddpg_o.experiments.train_darl1n \
     --num-landmark=3\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="../result/ising/darl1n/9agents/9agents_1/" \
+    --save-dir="./result/ising/darl1n/9agents/9agents_1/" \
     --save-rate=10 \
     --prosp-dist=0.3 \
     --max-num-train=2000 \
@@ -37,7 +37,7 @@ mpirun -n 10 python3  -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=3\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/ising/darl1n/16agents/16agents_1/" \
+#     --save-dir="./result/ising/darl1n/16agents/16agents_1/" \
 #     --save-rate=10 \
 #     --prosp-dist=0.3 \
 #     --max-num-train=150 \
@@ -62,7 +62,7 @@ mpirun -n 10 python3  -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=3\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/ising/darl1n/25agents/25agents_1/" \
+#     --save-dir="./result/ising/darl1n/25agents/25agents_1/" \
 #     --save-rate=10 \
 #     --prosp-dist=0.3 \
 #     --max-num-train=300 \
@@ -85,7 +85,7 @@ mpirun -n 10 python3  -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=3\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/ising/darl1n/64agents/64agents_1/" \
+#     --save-dir="./result/ising/darl1n/64agents/64agents_1/" \
 #     --save-rate=10 \
 #     --prosp-dist=0.3 \
 #     --max-num-train=100 \

@@ -6,12 +6,12 @@ env_name='adversarial'
 logger = Logger(exp_name=exp_name, env_name=env_name)
 
 # total_steps
-f = open(r'../result/adversarial/epc/6agents/6agents_3/train_index.pkl','rb')
+f = open(r'./result/adversarial/epc/6agents/6agents_3/train_index.pkl','rb')
 episode = pickle.load(f)
 print(episode)
 
 # score
-f = open(r'../result/adversarial/epc/6agents/6agents_3/good_agent.pkl','rb')
+f = open(r'./result/adversarial/epc/6agents/6agents_3/good_agent.pkl','rb')
 reward = pickle.load(f)
 print(reward)
 

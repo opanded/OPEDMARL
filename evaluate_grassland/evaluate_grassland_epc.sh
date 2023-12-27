@@ -16,5 +16,5 @@ python3 -m maddpg_o.experiments.evaluate_epc\
     --num-units=64 \
     --ratio=1.5 \
     --max-episode-len=25 \
-    --adv-save-dir="../result/grassland/baseline_maddpg/6agents/6agents_eva/" \
-    --good-save-dir="../result/grassland/epc/6agents/6agents_eva/" \
+    --adv-save-dir="./result/grassland/baseline_maddpg/6agents/6agents_eva/" \
+    --good-save-dir="./result/grassland/epc/6agents/6agents_eva/" \

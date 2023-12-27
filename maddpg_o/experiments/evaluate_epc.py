@@ -371,7 +371,7 @@ with tf.Session() as session:
                         initial.append(agent.state.spin)
 
             else:
-                gif_path = '../visualize/' + arglist.scenario + '/real_epc_vs_darl1n_adv_sight' + '/%dagents/gifs/' %n
+                gif_path = './visualize/' + arglist.scenario + '/real_epc_vs_darl1n_adv_sight' + '/%dagents/gifs/' %n
                 touch_path(gif_path)
                 imageio.mimsave(gif_path + '%d.gif' %trans, frames, duration=0.15)
                 plt.imshow(frames[-1])

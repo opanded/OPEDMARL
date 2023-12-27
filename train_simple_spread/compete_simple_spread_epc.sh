@@ -19,9 +19,9 @@ python3 -m maddpg_o.experiments.train_epc \
     --adv-policy=att-maddpg \
     --good-share-weights \
     --adv-share-weights \
-    --good-load-dir1="../result/simple_spread/epc/3agents/3agents_1" \
-    --good-load-dir2="../result/simple_spread/epc/3agents/3agents_1" \
-    --save-dir="../result/simple_spread/epc/3agents/3agents_1" \
+    --good-load-dir1="./result/simple_spread/epc/3agents/3agents_1" \
+    --good-load-dir2="./result/simple_spread/epc/3agents/3agents_1" \
+    --save-dir="./result/simple_spread/epc/3agents/3agents_1" \
     --save-rate=0 \
     --train-rate=0 \
     --n-cpu-per-agent=5 \
@@ -50,9 +50,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/simple_spread/epc/6agents/6agents_1" \
-#     --good-load-dir2="../result/simple_spread/epc/6agents/6agents_1" \
-#     --save-dir="../result/simple_spread/epc/6agents/6agents_1" \
+#     --good-load-dir1="./result/simple_spread/epc/6agents/6agents_1" \
+#     --good-load-dir2="./result/simple_spread/epc/6agents/6agents_1" \
+#     --save-dir="./result/simple_spread/epc/6agents/6agents_1" \
 #     --save-rate=0 \
 #     --train-rate=0 \
 #     --n-cpu-per-agent=5 \
@@ -80,9 +80,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/simple_spread/epc/12agents/12agents_1" \
-#     --good-load-dir2="../result/simple_spread/epc/12agents/12agents_1" \
-#     --save-dir="../result/simple_spread/epc/12agents/12agents_1" \
+#     --good-load-dir1="./result/simple_spread/epc/12agents/12agents_1" \
+#     --good-load-dir2="./result/simple_spread/epc/12agents/12agents_1" \
+#     --save-dir="./result/simple_spread/epc/12agents/12agents_1" \
 #     --save-rate=0 \
 #     --train-rate=0 \
 #     --n-cpu-per-agent=5 \
@@ -110,9 +110,9 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --adv-policy=att-maddpg \
 #     --good-share-weights \
 #     --adv-share-weights \
-#     --good-load-dir1="../result/simple_spread/epc/24agents/24agents_1" \
-#     --good-load-dir2="../result/simple_spread/epc/24agents/24agents_1" \
-#     --save-dir="../result/simple_spread/epc/24agents/24agents_1" \
+#     --good-load-dir1="./result/simple_spread/epc/24agents/24agents_1" \
+#     --good-load-dir2="./result/simple_spread/epc/24agents/24agents_1" \
+#     --save-dir="./result/simple_spread/epc/24agents/24agents_1" \
 #     --save-rate=0 \
 #     --train-rate=0 \
 #     --n-cpu-per-agent=5 \

@@ -37,8 +37,8 @@ python3 -m maddpg_o.experiments.train_darl1n \
     --num-landmark=3\
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="../result/adversarial/darl1n/6agents/6agents_1/" \
-    --adv-load-dir="../result/adversarial/baseline_maddpg/6agents/6agents_1/" \
+    --save-dir="./result/adversarial/darl1n/6agents/6agents_1/" \
+    --adv-load-dir="./result/adversarial/baseline_maddpg/6agents/6agents_1/" \
     --save-rate=1 \
     --prosp-dist=0.1 \
     --eva-max-episode-len=25 \
@@ -72,8 +72,8 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=6\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/adversarial/darl1n/12agents/12agents_1/" \
-#     --adv-load-dir="../result/adversarial/baseline_maddpg/12agents/12agents_1/" \
+#     --save-dir="./result/adversarial/darl1n/12agents/12agents_1/" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/12agents/12agents_1/" \
 #     --save-rate=1 \
 #     --prosp-dist=0.15 \
 #     --good-max-num-neighbors=12 \
@@ -106,8 +106,8 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=12\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/adversarial/darl1n/24agents/24agents_1/" \
-#     --adv-load-dir="../result/adversarial/baseline_maddpg/24agents/24agents_1/" \
+#     --save-dir="./result/adversarial/darl1n/24agents/24agents_1/" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/24agents/24agents_1/" \
 #     --save-rate=1 \
 #     --prosp-dist=0.2 \
 #     --eva-max-episode-len=35 \
@@ -138,8 +138,8 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --num-landmark=24\
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/adversarial/darl1n/48agents/48agents_1/" \
-#     --adv-load-dir="../result/adversarial/baseline_maddpg/48agents/48agents_1/" \
+#     --save-dir="./result/adversarial/darl1n/48agents/48agents_1/" \
+#     --adv-load-dir="./result/adversarial/baseline_maddpg/48agents/48agents_1/" \
 #     --save-rate=1 \
 #     --prosp-dist=0.25 \
 #     --eva-max-episode-len=40 \

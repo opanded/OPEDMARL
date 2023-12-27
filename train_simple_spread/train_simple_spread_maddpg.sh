@@ -10,7 +10,7 @@ python3 -m maddpg_o.experiments.train_normal \
     --num-agents=3 \
     --good-policy=maddpg \
     --adv-policy=maddpg \
-    --save-dir="../result/simple_spread/maddpg/3agents/3agents_1/" \
+    --save-dir="./result/simple_spread/maddpg/3agents/3agents_1/" \
     --save-rate=1 \
     --max-num-train=2000 \
     --good-max-num-neighbors=3 \
@@ -28,7 +28,7 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=6 \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/simple_spread/maddpg/6agents/6agents_1/" \
+#     --save-dir="./result/simple_spread/maddpg/6agents/6agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=2000 \
 #     --good-max-num-neighbors=6 \
@@ -46,7 +46,7 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=12 \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/simple_spread/maddpg/12agents/12agents_1/" \
+#     --save-dir="./result/simple_spread/maddpg/12agents/12agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=1000 \
 #     --good-max-num-neighbors=12 \
@@ -65,7 +65,7 @@ python3 -m maddpg_o.experiments.train_normal \
 #     --num-agents=24 \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
-#     --save-dir="../result/simple_spread/maddpg/24agents/24agents_1/" \
+#     --save-dir="./result/simple_spread/maddpg/24agents/24agents_1/" \
 #     --save-rate=1 \
 #     --max-num-train=400 \
 #     --good-max-num-neighbors=24 \

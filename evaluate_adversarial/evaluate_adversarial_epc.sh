@@ -16,5 +16,5 @@ python3 -m maddpg_o.experiments.evaluate_epc\
     --num-units=64 \
     --ratio=1.5 \
     --max-episode-len=25 \
-    --good-save-dir="../result/adversarial/epc/6agents/6agents_eva/" \
-    --adv-save-dir="../result/adversarial/baseline_maddpg/6agents/6agents_eva" \
+    --good-save-dir="./result/adversarial/epc/6agents/6agents_eva/" \
+    --adv-save-dir="./result/adversarial/baseline_maddpg/6agents/6agents_eva" \
