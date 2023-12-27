@@ -39,7 +39,7 @@ python3 -m maddpg_o.experiments.train_darl1n \
     --adv-policy=maddpg \
     --save-dir="../result/grassland/darl1n/6agents/6agents_1/" \
     --adv-load-dir="../result/grassland/baseline_maddpg/6agents/6agents_1/" \
-    --save-rate=30 \
+    --save-rate=1 \
     --prosp-dist=0.1 \
     --eva-max-episode-len=25 \
     --good-max-num-neighbors=6 \
@@ -74,11 +74,11 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/grassland/darl1n/12agents/12agents_1/" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/12agents/12agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --prosp-dist=0.15 \
 #     --good-max-num-neighbors=12 \
 #     --adv-max-num-neighbors=12 \
-#     --max-num-train=3000\
+#     --max-num-train=2000\
 #     --eva-max-episode-len=30 \
 #     --max-episode-len=30 \
 #     --ratio=2 \
@@ -108,13 +108,13 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/grassland/darl1n/24agents/24agents_1/" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/24agents/24agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --prosp-dist=0.2 \
 #     --eva-max-episode-len=35 \
 #     --max-episode-len=35 \
 #     --good-max-num-neighbors=24 \
 #     --adv-max-num-neighbors=24 \
-#     --max-num-train=3000\
+#     --max-num-train=2000\
 #     --ratio=2.5 \
 #     --seed=16\
 #     --load-one-side \
@@ -140,7 +140,7 @@ python3 -m maddpg_o.experiments.train_darl1n \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/grassland/darl1n/48agents/48agents_1/" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --prosp-dist=0.25 \
 #     --eva-max-episode-len=40 \
 #     --max-episode-len=40 \

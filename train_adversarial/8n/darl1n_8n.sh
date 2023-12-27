@@ -14,12 +14,12 @@
 #     --adv-policy=maddpg \
 #     --save-dir="./result/adversarial/darl1n/8agents/8agents_1" \
 #     --adv-load-dir="./result/adversarial/baseline_maddpg/8agents/8agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --prosp-dist=0.1 \
 #     --eva-max-episode-len=25 \
 #     --good-max-num-neighbors=8 \
 #     --adv-max-num-neighbors=8 \
-#     --max-num-train=3000\
+#     --max-num-train=2000\
 #     --eva-max-episode-len=25 \
 #     --max-episode-len=25 \
 #     --ratio=1.5 \
@@ -42,7 +42,7 @@ mpirun -n 7 python3  -m maddpg_o.experiments.train_darl1n \
     --adv-policy=maddpg \
     --save-dir="./result/adversarial/darl1n/16agents/16agents_1" \
     --adv-load-dir="./result/adversarial/baseline_maddpg/16agents/16agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --prosp-dist=0.15 \
     --good-max-num-neighbors=16 \
     --adv-max-num-neighbors=16 \
@@ -73,7 +73,7 @@ mpirun -n 13 python3  -m maddpg_o.experiments.train_darl1n \
   --adv-policy=maddpg \
   --save-dir="./result/adversarial/darl1n/32agents/32agents_1" \
   --adv-load-dir="./result/adversarial/baseline_maddpg/32agents/32agents_1" \
-  --save-rate=30 \
+  --save-rate=1 \
   --prosp-dist=0.2 \
   --eva-max-episode-len=35 \
   --max-episode-len=35 \
@@ -104,7 +104,7 @@ mpirun -n 25 python3  -m maddpg_o.experiments.train_darl1n \
     --adv-policy=maddpg \
     --save-dir="./result/adversarial/darl1n/64agents/64agents_1" \
     --adv-load-dir="./result/adversarial/baseline_maddpg/64agents/64agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --prosp-dist=0.05 \
     --eva-max-episode-len=40 \
     --max-episode-len=40 \

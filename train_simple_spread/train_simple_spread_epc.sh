@@ -9,7 +9,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --num-good=3 \
     --num-food=3 \
     --num-adversaries=0 \
-    --max-num-train=3000 \
+    --max-num-train=2000 \
     --ratio=1 \
     --num-units=64 \
     --good-policy=att-maddpg \
@@ -17,7 +17,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --good-share-weights \
     --adv-share-weights \
     --save-dir="../result/simple_spread/epc/3agents/3agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
@@ -47,7 +47,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir1="../result/simple_spread/epc/3agents/3agents_1" \
 #     --good-load-dir2="../result/simple_spread/epc/3agents/3agents_1" \
 #     --save-dir="../result/simple_spread/epc/6agents/6agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \
@@ -77,7 +77,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir1="../result/simple_spread/epc/6agents/6agents_1" \
 #     --good-load-dir2="../result/simple_spread/epc/6agents/6agents_1" \
 #     --save-dir="../result/simple_spread/epc/12agents/12agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \
@@ -107,7 +107,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir1="../result/simple_spread/epc/12agents/12agents_1" \
 #     --good-load-dir2="../result/simple_spread/epc/12agents/12agents_1" \
 #     --save-dir="../result/simple_spread/epc/24agents/24agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \

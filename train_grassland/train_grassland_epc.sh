@@ -12,7 +12,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --num-food=3\
     --num-agents=6 \
     --num-adversaries=3 \
-    --max-num-train=3000 \
+    --max-num-train=2000 \
     --ratio=1.5 \
     --num-units=64 \
     --good-policy=att-maddpg \
@@ -21,7 +21,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --adv-share-weights \
     --adv-load-dir="../result/grassland/baseline_maddpg/6agents/6agents_1" \
     --save-dir="../result/grassland/epc/6agents/6agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
@@ -53,7 +53,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir2="../result/grassland/epc/6agents/6agents_1" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/12agents/12agents_1" \
 #     --save-dir="../result/grassland/epc/12agents/12agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \
@@ -87,7 +87,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir2="../result/grassland/epc/12agents/12agents_1" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/24agents/24agents_1" \
 #     --save-dir="../result/grassland/epc/24agents/24agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \
@@ -120,7 +120,7 @@ python3 -m maddpg_o.experiments.train_epc \
 #     --good-load-dir2="../result/grassland/epc/24agents/24agents_1" \
 #     --adv-load-dir="../result/grassland/baseline_maddpg/48agents/48agents_1" \
 #     --save-dir="../result/grassland/epc/48agents/48agents_1" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --train-rate=100 \
 #     --n-cpu-per-agent=5 \
 #     --n-envs=25 \

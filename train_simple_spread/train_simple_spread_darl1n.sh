@@ -13,8 +13,8 @@ python3  -m maddpg_o.experiments.train_darl1n \
     --good-policy=maddpg \
     --adv-policy=maddpg \
     --save-dir="../result/simple_spread/darl1n/3agents/3agents_1/" \
-    --save-rate=30 \
-    --max-num-train=3000\
+    --save-rate=1 \
+    --max-num-train=2000\
     --prosp-dist=0.05 \
     --eva-max-episode-len=25 \
     --good-max-num-neighbors=3 \
@@ -37,7 +37,7 @@ python3  -m maddpg_o.experiments.train_darl1n \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/simple_spread/darl1n/6agents/6agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --max-num-train=2000\
 #     --prosp-dist=0.1 \
 #     --eva-max-episode-len=25 \
@@ -61,7 +61,7 @@ python3  -m maddpg_o.experiments.train_darl1n \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/simple_spread/darl1n/12agents/12agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --max-num-train=2000\
 #     --prosp-dist=0.15 \
 #     --eva-max-episode-len=25 \
@@ -86,7 +86,7 @@ python3  -m maddpg_o.experiments.train_darl1n \
 #     --good-policy=maddpg \
 #     --adv-policy=maddpg \
 #     --save-dir="../result/simple_spread/darl1n/24agents/24agents_1/" \
-#     --save-rate=30 \
+#     --save-rate=1 \
 #     --max-num-train=2000\
 #     --prosp-dist=0.2 \
 #     --eva-max-episode-len=25 \

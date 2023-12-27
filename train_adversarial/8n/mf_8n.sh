@@ -12,8 +12,8 @@ python3 -m maddpg_o.experiments.train_normal \
     --adv-policy=maddpg\
     --adv-load-dir="./result/adversarial/baseline_maddpg/8agents/8agents_1/"\
     --save-dir="./result/adversarial/mean_field/8agents/8agents_1/" \
-    --save-rate=30 \
-    --max-num-train=3000\
+    --save-rate=1 \
+    --max-num-train=2000\
     --good-max-num-neighbors=8 \
     --adv-max-num-neighbors=8 \
     --max-episode-len=25 \
@@ -34,7 +34,7 @@ python3 -m maddpg_o.experiments.train_normal \
     --adv-policy=maddpg\
     --adv-load-dir="./result/adversarial/baseline_maddpg/16agents/16agents_1/"\
     --save-dir="./result/adversarial/mean_field/16agents/16agents_1/" \
-    --save-rate=30 \
+    --save-rate=1 \
     --max-num-train=2000\
     --good-max-num-neighbors=16 \
     --adv-max-num-neighbors=16 \
@@ -56,7 +56,7 @@ python3 -m maddpg_o.experiments.train_normal \
     --adv-policy=maddpg\
     --adv-load-dir="./result/adversarial/baseline_maddpg/32agents/32agents_1/"\
     --save-dir="./result/adversarial/mean_field/32agents/32agents_1/" \
-    --save-rate=30 \
+    --save-rate=1 \
     --max-num-train=1000\
     --good-max-num-neighbors=32 \
     --adv-max-num-neighbors=32 \
@@ -78,7 +78,7 @@ python3 -m maddpg_o.experiments.train_normal \
     --adv-policy=maddpg\
     --adv-load-dir="./result/adversarial/baseline_maddpg/64agents/64agents_1/"\
     --save-dir="./result/adversarial/mean_field/64agents/64agents_1/" \
-    --save-rate=30 \
+    --save-rate=1 \
     --max-num-train=500\
     --good-max-num-neighbors=64 \
     --adv-max-num-neighbors=64 \

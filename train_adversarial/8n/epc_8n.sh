@@ -12,7 +12,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --num-food=4 \
     --num-agents=8 \
     --num-adversaries=4 \
-    --max-num-train=3000 \
+    --max-num-train=2000 \
     --ratio=1.5 \
     --num-units=64 \
     --good-policy=att-maddpg \
@@ -21,7 +21,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --adv-share-weights \
     --adv-load-dir="./result/adversarial/baseline_maddpg/8agents/8agents_1" \
     --save-dir="./result/adversarial/epc/8agents/8agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
@@ -53,7 +53,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --good-load-dir2="./result/adversarial/epc/8agents/8agents_1" \
     --adv-load-dir="./result/adversarial/baseline_maddpg/16agents/16agents_1" \
     --save-dir="./result/adversarial/epc/16agents/16agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
@@ -87,7 +87,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --good-load-dir2="./result/adversarial/epc/16agents/16agents_1" \
     --adv-load-dir="./result/adversarial/baseline_maddpg/32agents/32agents_1" \
     --save-dir="./result/adversarial/epc/32agents/32agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
@@ -120,7 +120,7 @@ python3 -m maddpg_o.experiments.train_epc \
     --good-load-dir2="./result/adversarial/epc/32agents/32agents_1" \
     --adv-load-dir="./result/adversarial/baseline_maddpg/64agents/64agents_1" \
     --save-dir="./result/adversarial/epc/64agents/64agents_1" \
-    --save-rate=30 \
+    --save-rate=1 \
     --train-rate=100 \
     --n-cpu-per-agent=5 \
     --n-envs=25 \
